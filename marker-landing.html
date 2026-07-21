@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marker — We make enterprises AI-native</title>
+<meta name="description" content="Marker makes enterprises AI-native. Not a strategy deck — working systems, shipped into your business in weeks.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============ Tokens — from Figma (Colors 734:224, Type 734:2004) ============ */
+:root{
+  --bg-1:#FFFFFF;
+  --bg-2:#FAFAFA;
+  --dark-1:#2B2B2B;
+  --dark-2:#383838;
+  --stroke-1:#EBEBEB;
+  --stroke-2:#424242;
+  --ink:#1A1A1A;
+  --ink-2:#4D4D4D;
+  --ink-3:#666666;
+  --ink-inv:#FFFFFF;
+  --ink-inv-2:#B2B2B2;
+  --amber:#EAAB0B;
+  --blue:#1274EA;
+  --teal:#4AB6A9;
+  --grad-thermal:linear-gradient(100deg,#1274EA 0%,#2E9BD6 18%,#4AB6A9 38%,#9CC24E 58%,#EAAB0B 78%,#E07A1F 100%);
+  --font-display:'Archivo',sans-serif;
+  --font-body:'Inter',sans-serif;
+  --max:1200px;
+  --r-sm:8px;
+  --r-md:12px;
+  --r-lg:20px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font-body);
+  background:var(--bg-2);
+  color:var(--ink);
+  font-size:16px;
+  line-height:1.5;
+  letter-spacing:-0.011em;
+  -webkit-font-smoothing:antialiased;
+}
+img,svg{display:block}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:4px}
+
+/* ============ Type scale ============ */
+.d1,.d2,.d3{font-family:var(--font-display);font-weight:600;letter-spacing:-0.025em;text-wrap:balance}
+.d1{font-size:clamp(2.5rem,6vw,4.5rem);line-height:1.04}
+.d2{font-size:clamp(2rem,4.2vw,3.25rem);line-height:1.08}
+.d3{font-size:clamp(1.35rem,2.4vw,1.75rem);line-height:1.2;font-weight:500}
+.eyebrow{
+  font-family:var(--font-body);font-weight:600;font-size:.75rem;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);
+  display:flex;align-items:center;gap:.6rem;
+}
+.eyebrow .tick{width:10px;height:10px;background:var(--amber);flex:none}
+.lede{font-size:1.125rem;line-height:1.55;color:var(--ink-2);letter-spacing:-0.015em;max-width:34em}
+.on-dark .lede{color:var(--ink-inv-2)}
+.on-dark .eyebrow{color:#8f8f8f}
+
+/* ============ Layout ============ */
+.wrap{max-width:var(--max);margin:0 auto;padding:0 clamp(20px,4vw,48px)}
+section{padding:clamp(72px,9vw,128px) 0}
+.sec-head{display:flex;flex-direction:column;gap:1.1rem;margin-bottom:clamp(40px,5vw,64px)}
+
+/* ============ Buttons ============ */
+.btn{
+  display:inline-flex;align-items:center;gap:.55rem;
+  font-family:var(--font-body);font-weight:500;font-size:.9375rem;letter-spacing:-0.01em;
+  padding:.72rem 1.3rem;border-radius:999px;border:1px solid transparent;
+  cursor:pointer;transition:transform .18s ease,background .18s ease,border-color .18s ease;
+  white-space:nowrap;
+}
+.btn:active{transform:scale(.985)}
+.btn .arr{transition:transform .18s ease}
+.btn:hover .arr{transform:translateX(3px)}
+.btn-dark{background:var(--dark-1);color:#fff}
+.btn-dark:hover{background:#000}
+.btn-ghost{background:transparent;color:var(--ink);border-color:var(--stroke-1)}
+.btn-ghost:hover{border-color:var(--ink)}
+.btn-amber{background:var(--amber);color:var(--ink)}
+.btn-amber:hover{background:#f7b90f}
+.btn-light{background:#fff;color:var(--ink)}
+.btn-light:hover{background:var(--bg-2)}
+
+/* ============ Nav ============ */
+header{
+  position:sticky;top:0;z-index:50;
+  background:color-mix(in srgb,var(--bg-2) 88%,transparent);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--stroke-1);
+}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{display:flex;align-items:center;color:var(--ink)}
+.logo svg{height:24px;width:auto}
+.nav-right{display:flex;align-items:center;gap:1.6rem}
+.nav-link{font-size:.9375rem;font-weight:500;color:var(--ink-2)}
+.nav-link:hover{color:var(--ink)}
+
+/* ============ Hero ============ */
+.hero{padding:clamp(88px,11vw,150px) 0 clamp(80px,10vw,130px);text-align:center;position:relative;overflow:hidden}
+.hero-frame{position:relative;display:inline-block;padding:clamp(34px,5vw,58px) clamp(30px,6vw,84px)}
+.hero-frame .corner{position:absolute;width:clamp(34px,4.5vw,52px);height:auto;color:var(--amber)}
+.corner.tl{top:0;left:0}
+.corner.tr{top:0;right:0;transform:scaleX(-1)}
+.corner.bl{bottom:0;left:0;transform:scaleY(-1)}
+.corner.br{bottom:0;right:0;transform:scale(-1)}
+.hero h1{max-width:15ch;margin:0 auto}
+.hero .lede{margin:1.6rem auto 0;text-align:center}
+.hero-cta{display:flex;gap:.8rem;justify-content:center;margin-top:2.4rem;flex-wrap:wrap}
+.hero-glyph{position:absolute;inset:auto;opacity:.5;pointer-events:none}
+.hg-l{left:max(-40px,2vw);top:22%;width:clamp(90px,11vw,150px)}
+.hg-r{right:max(-40px,2vw);bottom:14%;width:clamp(80px,9vw,120px)}
+
+/* ============ Proof ============ */
+.proof{background:var(--bg-1);border-top:1px solid var(--stroke-1);border-bottom:1px solid var(--stroke-1)}
+.yc{display:flex;align-items:center;gap:.6rem}
+.yc .yc-badge{width:18px;height:18px;background:#FB651E;color:#fff;font-weight:700;font-size:.7rem;display:grid;place-items:center;border-radius:3px}
+.proof-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--stroke-1);border:1px solid var(--stroke-1);border-radius:var(--r-md);overflow:hidden;margin-top:.4rem}
+.proof-cell{background:var(--bg-1);padding:1.5rem 1.6rem;display:flex;align-items:flex-start;gap:.8rem}
+.proof-cell .chk{flex:none;width:22px;height:22px;border-radius:50%;background:color-mix(in srgb,var(--teal) 18%,#fff);color:var(--teal);display:grid;place-items:center;margin-top:.1rem}
+.proof-cell p{font-weight:500;letter-spacing:-0.012em}
+.proof-note{margin-top:1.6rem;max-width:44em;color:var(--ink-2);font-size:.9375rem;line-height:1.6}
+
+/* ============ Stakes (dark) ============ */
+.stakes{background:var(--dark-1);color:var(--ink-inv)}
+.stakes-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(1.4rem,3vw,2.6rem)}
+.stake{border-top:2px solid var(--stroke-2);padding-top:1.1rem}
+.stake:hover{border-top-color:var(--amber)}
+.stake{transition:border-top-color .25s ease}
+.stake .lbl{font-size:.7rem;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--amber);margin-bottom:.65rem}
+.stake p{font-size:1.0625rem;font-weight:500;letter-spacing:-0.015em;line-height:1.45;color:#EDEDED}
+
+/* ============ Playbook table ============ */
+.work{background:var(--bg-1);border-bottom:1px solid var(--stroke-1)}
+.pb-table{border:1px solid var(--stroke-1);border-radius:var(--r-md);overflow:hidden}
+.pb-head,.pb-row{display:grid;grid-template-columns:1fr 1fr}
+.pb-head{background:var(--bg-2);border-bottom:1px solid var(--stroke-1)}
+.pb-head div{padding:.85rem 1.5rem;font-size:.72rem;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3)}
+.pb-head div:last-child{color:var(--ink);border-left:1px solid var(--stroke-1)}
+.pb-row{border-bottom:1px solid var(--stroke-1)}
+.pb-row:last-child{border-bottom:none}
+.pb-row div{padding:1.05rem 1.5rem;font-size:.9688rem}
+.pb-row .old{color:var(--ink-3)}
+.pb-row .new{border-left:1px solid var(--stroke-1);font-weight:500;display:flex;align-items:center;gap:.6rem;background:color-mix(in srgb,var(--teal) 5%,#fff)}
+.pb-row .new .dot{width:8px;height:8px;background:var(--teal);border-radius:2px;flex:none}
+
+/* ============ How it works ============ */
+.how{background:var(--bg-2)}
+.flow{display:flex;flex-direction:column;gap:.7rem}
+.flow-row{
+  display:grid;grid-template-columns:auto 1fr auto auto;align-items:center;
+  gap:clamp(1rem,2.5vw,2rem);
+  background:var(--bg-1);border:1px solid var(--stroke-1);border-radius:var(--r-md);
+  padding:1.25rem 1.5rem;transition:transform .2s ease,box-shadow .2s ease;
+}
+.flow-row:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(0,0,0,.05)}
+.flow-row.hot{background:var(--amber);border-color:var(--amber)}
+.flow-row .g{width:52px;height:52px;flex:none}
+.flow-row h3{font-family:var(--font-display);font-weight:600;font-size:1.125rem;letter-spacing:-0.02em;margin-bottom:.2rem}
+.flow-row p{font-size:.9063rem;color:var(--ink-2);max-width:42em}
+.flow-row.hot p{color:#4a3a05}
+.stat{min-width:120px;border-left:1px solid var(--stroke-1);padding-left:clamp(1rem,2vw,1.75rem)}
+.flow-row.hot .stat{border-left-color:rgba(0,0,0,.18)}
+.stat .k{font-size:.66rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+.flow-row.hot .stat .k{color:#4a3a05}
+.stat .v{font-family:var(--font-display);font-weight:600;font-size:1.5rem;letter-spacing:-0.02em}
+.flow-row .arr{color:var(--ink-3);font-size:1.2rem}
+.flow-row.hot .arr{color:var(--ink)}
+.flow-note{margin-top:1.4rem;font-size:.9375rem;color:var(--ink-3)}
+
+/* ============ End state ============ */
+.end{background:var(--dark-1);color:var(--ink-inv)}
+.end-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.6rem,3.5vw,3rem) clamp(2rem,4vw,4rem)}
+.end-cell{border-top:2px solid var(--stroke-2);padding-top:1.15rem;transition:border-top-color .25s ease}
+.end-cell:hover{border-top-color:var(--teal)}
+.end-cell .lbl{font-size:.7rem;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--teal);margin-bottom:.6rem}
+.end-cell h3{font-family:var(--font-display);font-weight:500;font-size:clamp(1.15rem,1.8vw,1.4rem);letter-spacing:-0.02em;line-height:1.3;color:#F2F2F2}
+.end-cell p{margin-top:.5rem;font-size:.9375rem;color:var(--ink-inv-2)}
+.end-flex{display:grid;grid-template-columns:1fr auto;gap:clamp(2rem,5vw,5rem);align-items:center}
+.end-glyph{width:clamp(160px,20vw,250px)}
+
+/* ============ Testimonial ============ */
+.quote{background:var(--bg-1);border-top:1px solid var(--stroke-1)}
+.quote-card{
+  display:grid;grid-template-columns:auto 1fr;gap:clamp(2rem,5vw,4.5rem);align-items:center;
+  border:1px solid var(--stroke-1);border-radius:var(--r-lg);background:var(--bg-2);
+  padding:clamp(2rem,4.5vw,4rem);
+}
+.quote-glyph{width:clamp(140px,16vw,210px)}
+.quote blockquote{font-family:var(--font-display);font-weight:500;font-size:clamp(1.15rem,2vw,1.5rem);letter-spacing:-0.02em;line-height:1.4;text-wrap:pretty}
+.quote .attr{margin-top:1.4rem;display:flex;align-items:center;gap:.8rem}
+.quote .attr .avatar{width:36px;height:36px;border-radius:50%;background:var(--grad-thermal)}
+.quote .attr .who{font-size:.875rem}
+.quote .attr .who b{display:block;font-weight:600}
+.quote .attr .who span{color:var(--ink-3)}
+
+/* ============ CTA band ============ */
+.cta{background:var(--amber);text-align:center}
+.cta h2{max-width:16ch;margin:0 auto}
+.cta .lede{color:#4a3a05;margin:1.3rem auto 0;text-align:center}
+.cta .btns{display:flex;justify-content:center;gap:.8rem;margin-top:2.2rem;flex-wrap:wrap}
+
+/* ============ Footer (Figma 734:2054) ============ */
+:root{--card-bg:#E8E8E8;--card-line:#AEAEAE}
+.footer-fig{background:var(--bg-2);padding:clamp(40px,5vw,64px) 0}
+.footer-card{background:var(--card-bg);border:1px solid var(--card-line);border-radius:var(--r-lg);overflow:hidden}
+
+.ftr-nav{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--card-line)}
+.ftr-nav-col{
+  display:flex;flex-direction:column;min-height:clamp(140px,16vw,220px);
+  padding:14px 14px 20px 24px;border-left:1px solid var(--card-line);
+  font-family:var(--font-body);font-size:1.05rem;font-weight:500;color:var(--ink);
+  opacity:.55;transition:opacity .2s ease;
+}
+.ftr-nav-col:first-child{border-left:none;opacity:1}
+.ftr-nav-col:hover{opacity:1}
+.ftr-nav-col span{margin-top:auto}
+.ftr-ic{width:26px;height:26px;align-self:flex-end;transform:rotate(-45deg);color:var(--ink)}
+
+.ftr-cloud{position:relative;overflow:hidden;padding:1.8rem 0;display:flex;flex-direction:column;gap:.5rem}
+.ftr-row{display:flex;align-items:center;gap:6px;white-space:nowrap;justify-content:center;margin-left:var(--shift,0)}
+.ftr-pill{
+  display:inline-flex;align-items:center;height:clamp(30px,3.6vw,40px);padding:0 1.1rem;
+  border-radius:999px;border:1px solid var(--teal);background:var(--card-bg);color:var(--teal);
+  font-family:var(--font-body);font-weight:600;font-size:.7rem;letter-spacing:.08em;
+}
+.ftr-bar{height:clamp(30px,3.6vw,40px);border-radius:999px;background:var(--teal);flex:none}
+.ftr-dot{width:clamp(30px,3.6vw,40px);height:clamp(30px,3.6vw,40px);border-radius:50%;background:var(--teal);flex:none}
+
+.ftr-bottom{display:flex;align-items:stretch;border-top:1px solid var(--card-line)}
+.ftr-word{font-family:var(--font-display);font-weight:500;font-size:clamp(3.5rem,10vw,9rem);letter-spacing:-0.03em;color:var(--ink);line-height:1;display:flex;align-items:center;padding:0 clamp(20px,4vw,48px);flex:1;min-width:0}
+.ftr-links{display:flex;flex:1.4;align-items:flex-end;justify-content:space-between;flex-wrap:nowrap;gap:.7rem;border-left:1px solid var(--card-line);padding:1.6rem clamp(16px,2.5vw,40px);font-size:clamp(.7rem,.85vw,.8125rem);color:var(--ink);white-space:nowrap;overflow-x:auto;min-width:0}
+.ftr-links a{opacity:.5;transition:opacity .2s ease}
+.ftr-links a:hover{opacity:1}
+
+/* ============ Reveal ============ */
+.rv{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  .rv{opacity:1;transform:none;transition:none}
+  html{scroll-behavior:auto}
+  .btn,.flow-row,.stake,.end-cell{transition:none}
+}
+
+/* ============ Responsive ============ */
+@media (max-width:900px){
+  .proof-grid{grid-template-columns:1fr}
+  .stakes-grid{grid-template-columns:repeat(2,1fr)}
+  .end-grid{grid-template-columns:1fr}
+  .end-flex{grid-template-columns:1fr}
+  .end-glyph{display:none}
+  .flow-row{grid-template-columns:auto 1fr;grid-template-rows:auto auto}
+  .flow-row .stat{grid-column:2;border-left:none;padding-left:0;border-top:1px solid var(--stroke-1);padding-top:.7rem;min-width:0}
+  .flow-row.hot .stat{border-top-color:rgba(0,0,0,.18)}
+  .flow-row .arr{display:none}
+  .quote-card{grid-template-columns:1fr;text-align:left}
+  .quote-glyph{width:120px}
+  .hero-glyph{display:none}
+  .ftr-nav{grid-template-columns:repeat(2,1fr)}
+  .ftr-nav-col:nth-child(3){border-left:none}
+  .ftr-cloud{display:none}
+  .ftr-bottom{flex-direction:column}
+  .ftr-links{border-left:none;border-top:1px solid var(--card-line);justify-content:flex-start;flex-wrap:wrap;white-space:normal;overflow-x:visible}
+}
+@media (max-width:560px){
+  .stakes-grid{grid-template-columns:1fr}
+  .pb-head,.pb-row{grid-template-columns:1fr}
+  .pb-head div:last-child,.pb-row .new{border-left:none;border-top:1px solid var(--stroke-1)}
+  .pb-row .old{padding-bottom:.4rem}
+  .nav-link{display:none}
+  .ftr-nav{grid-template-columns:1fr}
+  .ftr-nav-col{border-left:none !important;border-top:1px solid var(--card-line);min-height:0;padding:16px 20px}
+  .ftr-nav-col:first-child{border-top:none}
+  .ftr-word{font-size:clamp(3rem,20vw,4.5rem)}
+}
+</style>
+</head>
+<body>
+
+<!-- SVG defs: goo filter + glyph clusters -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <filter id="goo">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="7" result="b"/>
+      <feColorMatrix in="b" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -9" result="g"/>
+      <feComposite in="SourceGraphic" in2="g" operator="atop"/>
+    </filter>
+    <linearGradient id="thermal" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1274EA"/><stop offset=".25" stop-color="#2E9BD6"/>
+      <stop offset=".45" stop-color="#4AB6A9"/><stop offset=".68" stop-color="#9CC24E"/>
+      <stop offset=".85" stop-color="#EAAB0B"/><stop offset="1" stop-color="#E07A1F"/>
+    </linearGradient>
+    <!-- diamond metaball cluster, reusable -->
+    <g id="glyph-cluster">
+      <g filter="url(#goo)">
+        <circle cx="100" cy="100" r="16"/>
+        <circle cx="100" cy="58" r="16"/><circle cx="100" cy="22" r="14"/>
+        <circle cx="100" cy="142" r="16"/><circle cx="100" cy="178" r="14"/>
+        <circle cx="58" cy="100" r="16"/><circle cx="22" cy="100" r="14"/>
+        <circle cx="142" cy="100" r="16"/><circle cx="178" cy="100" r="14"/>
+        <circle cx="70" cy="70" r="13"/><circle cx="130" cy="70" r="13"/>
+        <circle cx="70" cy="130" r="13"/><circle cx="130" cy="130" r="13"/>
+      </g>
+    </g>
+    <!-- small 5-dot glyph for flow rows -->
+    <g id="glyph-small">
+      <g filter="url(#goo)">
+        <circle cx="50" cy="50" r="12"/>
+        <circle cx="50" cy="20" r="10"/><circle cx="50" cy="80" r="10"/>
+        <circle cx="20" cy="50" r="10"/><circle cx="80" cy="50" r="10"/>
+      </g>
+    </g>
+    <!-- pixel corner bracket -->
+    <g id="px-corner">
+      <path d="M0 0h34v10H10v24H0z"/>
+      <rect x="14" y="14" width="8" height="8"/>
+    </g>
+    <!-- Marker logo lockup (mark + wordmark) -->
+    <g id="logo-mark" fill="currentColor">
+      <path d="M40.817 137.589H16.0409C7.18174 137.589 0 144.771 0 153.63V249.875C0 258.734 7.18174 265.916 16.0409 265.916H108.196C112.833 265.916 117.243 263.909 120.289 260.413L210.377 157.033C212.262 154.871 214.99 153.63 217.858 153.63C223.338 153.63 227.78 158.072 227.78 163.552V249.875C227.78 258.734 234.962 265.916 243.821 265.916H287.853C292.49 265.916 296.9 263.909 299.947 260.413L390.365 156.655C392.04 154.733 394.464 153.63 397.014 153.63C401.885 153.63 405.834 157.579 405.834 162.45V249.875C405.834 258.734 413.015 265.916 421.875 265.916H495.662C504.522 265.916 511.703 258.734 511.703 249.875V152.026C511.703 143.167 504.522 135.985 495.662 135.985H421.875C413.015 135.985 405.834 128.803 405.834 119.944V30.1152C405.834 21.2561 398.652 14.0743 389.793 14.0743H342.573C337.924 14.0743 333.504 16.0913 330.457 19.6028L243.248 120.115C241.574 122.044 239.146 123.152 236.592 123.152C231.725 123.152 227.78 119.207 227.78 114.34V30.1152C227.78 21.2561 220.598 14.0743 211.739 14.0743H162.902C158.261 14.0743 153.847 16.0844 150.801 19.5856L52.9181 132.078C49.8716 135.579 45.458 137.589 40.817 137.589Z"/>
+      <path d="M589.949 265.995V13.6124H654.332L703.264 166.661C704.735 171.076 706.207 176.104 707.678 181.745C709.15 187.386 710.499 192.782 711.725 197.933C713.197 203.083 714.301 207.621 715.037 211.545H717.98C718.47 207.866 719.329 203.451 720.555 198.301C721.781 193.15 723.008 187.754 724.234 182.113C725.706 176.472 727.177 171.198 728.649 166.293L777.948 13.6124H841.228V265.995H800.39V127.663C800.39 118.343 800.513 108.655 800.758 98.5984C801.004 88.5424 801.249 79.59 801.494 71.7414C801.739 63.8928 801.862 58.8647 801.862 56.6573H798.919C798.428 59.3553 797.202 64.0154 795.24 70.6377C793.523 77.0147 791.683 83.8823 789.721 91.2403C787.759 98.5984 785.92 104.975 784.203 110.371L733.064 265.995H696.641L645.503 110.739C644.031 106.079 642.437 100.561 640.72 94.1836C639.003 87.8066 637.286 81.3069 635.569 74.6846C633.852 68.0623 632.381 62.0532 631.154 56.6573H628.211C628.456 62.5438 628.579 69.7792 628.579 78.3637C628.824 86.9481 629.069 95.6552 629.315 104.485C629.56 113.069 629.683 120.795 629.683 127.663V265.995H589.949ZM933.831 270.41C927.699 270.41 921.077 269.674 913.964 268.203C906.851 266.731 900.106 264.033 893.729 260.109C887.597 256.184 882.569 250.788 878.645 243.921C874.721 236.808 872.758 227.61 872.758 216.328C872.758 203.083 875.824 192.169 881.956 183.584C888.088 175 896.672 168.255 907.709 163.35C918.747 158.444 931.868 155.011 947.075 153.048C962.527 151.086 979.328 150.105 997.478 150.105V130.974C997.478 124.597 996.374 118.956 994.167 114.05C992.205 109.145 988.403 105.343 982.762 102.645C977.366 99.9474 969.517 98.5984 959.216 98.5984C948.915 98.5984 940.821 99.9474 934.934 102.645C929.293 105.098 925.246 108.287 922.794 112.211C920.586 115.89 919.482 119.937 919.482 124.352V129.87H882.692C882.447 128.644 882.324 127.418 882.324 126.191C882.324 124.965 882.324 123.493 882.324 121.776C882.324 110.249 885.512 100.561 891.89 92.712C898.512 84.6181 907.709 78.4863 919.482 74.3167C931.255 70.1471 944.868 68.0623 960.32 68.0623C976.998 68.0623 990.856 70.515 1001.89 75.4205C1013.18 80.0806 1021.64 86.8255 1027.28 95.6552C1032.92 104.485 1035.74 115.154 1035.74 127.663V225.893C1035.74 230.554 1036.84 233.865 1039.05 235.827C1041.5 237.789 1044.32 238.77 1047.51 238.77H1060.76V264.523C1057.81 265.75 1054.14 266.976 1049.72 268.203C1045.31 269.429 1040.16 270.042 1034.27 270.042C1027.65 270.042 1022.01 268.816 1017.35 266.363C1012.93 264.156 1009.25 260.967 1006.31 256.797C1003.61 252.383 1001.77 247.477 1000.79 242.081H998.582C994.167 247.723 988.771 252.751 982.394 257.165C976.262 261.335 969.15 264.523 961.056 266.731C952.962 269.184 943.887 270.41 933.831 270.41ZM944.5 238.77C952.103 238.77 959.093 237.666 965.47 235.459C972.093 233.006 977.734 229.695 982.394 225.526C987.054 221.111 990.733 215.96 993.431 210.074C996.129 203.942 997.478 197.32 997.478 190.207V177.33C980.555 177.33 965.716 178.311 952.962 180.273C940.208 182.235 930.274 185.915 923.161 191.31C916.049 196.461 912.492 203.697 912.492 213.017C912.492 218.658 913.719 223.441 916.171 227.365C918.624 231.044 922.303 233.865 927.208 235.827C932.114 237.789 937.878 238.77 944.5 238.77ZM1076.14 265.995V72.4772H1107.78L1111.09 103.749H1113.3C1115.5 97.6174 1118.32 91.8535 1121.76 86.4576C1125.44 81.0616 1130.1 76.6468 1135.74 73.213C1141.62 69.7792 1148.74 68.0623 1157.08 68.0623C1161 68.0623 1164.44 68.4302 1167.38 69.1661C1170.57 69.9019 1173.02 70.5151 1174.74 71.0056V107.06H1161.86C1154.01 107.06 1147.02 108.287 1140.89 110.739C1135 113.192 1129.97 116.871 1125.81 121.776C1121.88 126.437 1118.94 132.2 1116.98 139.068C1115.26 145.936 1114.4 153.662 1114.4 162.246V265.995H1076.14ZM1192.29 265.995V-3.8661e-05H1230.55V160.774L1306.7 72.4772H1351.96L1286.47 147.53L1355.64 265.995H1311.49L1261.82 175.491L1230.55 206.395V265.995H1192.29ZM1443.25 270.41C1423.38 270.41 1406.7 266.854 1393.21 259.741C1379.97 252.383 1369.91 241.223 1363.05 226.261C1356.18 211.3 1352.74 192.292 1352.74 169.236C1352.74 145.936 1356.18 126.927 1363.05 112.211C1369.91 97.2495 1380.09 86.2123 1393.58 79.0995C1407.07 71.7414 1423.87 68.0623 1443.99 68.0623C1462.38 68.0623 1477.71 71.6188 1489.97 78.7316C1502.48 85.5991 1511.92 96.1457 1518.3 110.371C1524.68 124.597 1527.87 142.502 1527.87 164.085V178.802H1392.11C1392.6 192.537 1394.69 204.064 1398.37 213.385C1402.04 222.46 1407.56 229.205 1414.92 233.619C1422.52 237.789 1432.09 239.874 1443.62 239.874C1450.73 239.874 1457.11 239.015 1462.75 237.299C1468.39 235.336 1473.17 232.638 1477.1 229.205C1481.02 225.526 1484.09 221.233 1486.29 216.328C1488.5 211.177 1489.61 205.413 1489.61 199.036H1527.13C1527.13 210.564 1525.17 220.743 1521.25 229.573C1517.32 238.402 1511.56 245.883 1503.95 252.015C1496.6 257.901 1487.77 262.439 1477.46 265.627C1467.16 268.816 1455.76 270.41 1443.25 270.41ZM1392.85 150.841H1487.77C1487.77 141.275 1486.66 133.304 1484.45 126.927C1482.49 120.305 1479.55 114.909 1475.63 110.739C1471.7 106.57 1467.04 103.626 1461.64 101.91C1456.25 99.9474 1450.12 98.9663 1443.25 98.9663C1432.95 98.9663 1424.12 100.806 1416.76 104.485C1409.65 108.164 1404.13 113.928 1400.2 121.776C1396.28 129.38 1393.83 139.068 1392.85 150.841ZM1555.72 265.995V72.4772H1587.36L1590.67 103.749H1592.88C1595.09 97.6174 1597.91 91.8535 1601.34 86.4576C1605.02 81.0616 1609.68 76.6468 1615.32 73.213C1621.21 69.7792 1628.32 68.0623 1636.66 68.0623C1640.59 68.0623 1644.02 68.4302 1646.96 69.1661C1650.15 69.9019 1652.6 70.5151 1654.32 71.0056V107.06H1641.44C1633.6 107.06 1626.6 108.287 1620.47 110.739C1614.59 113.192 1609.56 116.871 1605.39 121.776C1601.46 126.437 1598.52 132.2 1596.56 139.068C1594.84 145.936 1593.98 153.662 1593.98 162.246V265.995H1555.72Z"/>
+    </g>
+  </defs>
+</svg>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#" aria-label="Marker home">
+      <svg viewBox="0 0 1659 271" fill="none" aria-hidden="true"><use href="#logo-mark"/></svg>
+    </a>
+    <nav class="nav-right">
+      <a class="nav-link" href="#how">How it works</a>
+      <a class="nav-link" href="#team">Team</a>
+      <a class="btn btn-dark" href="#book">Book a call <span class="arr">→</span></a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- HERO -->
+<section class="hero">
+  <svg class="hero-glyph hg-l" viewBox="0 0 200 200" fill="#4AB6A9" aria-hidden="true"><use href="#glyph-cluster"/></svg>
+  <svg class="hero-glyph hg-r" viewBox="0 0 200 200" fill="#1274EA" aria-hidden="true"><use href="#glyph-cluster"/></svg>
+  <div class="wrap">
+    <div class="hero-frame rv in">
+      <svg class="corner tl" viewBox="0 0 34 34" fill="currentColor" aria-hidden="true"><use href="#px-corner"/></svg>
+      <svg class="corner tr" viewBox="0 0 34 34" fill="currentColor" aria-hidden="true"><use href="#px-corner"/></svg>
+      <svg class="corner bl" viewBox="0 0 34 34" fill="currentColor" aria-hidden="true"><use href="#px-corner"/></svg>
+      <svg class="corner br" viewBox="0 0 34 34" fill="currentColor" aria-hidden="true"><use href="#px-corner"/></svg>
+      <h1 class="d1">Someone will rebuild your industry around AI. Make&nbsp;it&nbsp;you.</h1>
+    </div>
+    <p class="lede rv in">We make enterprises AI-native. Not a strategy deck — working systems, shipped into your business in weeks.</p>
+    <div class="hero-cta rv in">
+      <a class="btn btn-dark" href="#book">Book a call <span class="arr">→</span></a>
+      <a class="btn btn-ghost" href="#how">How it works</a>
+    </div>
+  </div>
+</section>
+
+<!-- PROOF -->
+<section class="proof">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="eyebrow yc"><span class="yc-badge">Y</span> Backed by Y Combinator</div>
+      <h2 class="d2">We've built AI inside a Fortune&nbsp;500.</h2>
+    </div>
+    <div class="proof-grid rv">
+      <div class="proof-cell"><span class="chk"><svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4.5L4 7.5L10 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><p>Two-time YC founders</p></div>
+      <div class="proof-cell"><span class="chk"><svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4.5L4 7.5L10 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><p>Sold our last company to Gap&nbsp;Inc.</p></div>
+      <div class="proof-cell"><span class="chk"><svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4.5L4 7.5L10 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><p>Started Gap's Office of AI</p></div>
+    </div>
+    <p class="proof-note rv">Three years inside, from individual contributor to the C-suite. We know exactly where transformations go to die — which is why Marker builds instead of advises.</p>
+  </div>
+</section>
+
+<!-- STAKES -->
+<section class="stakes on-dark">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="eyebrow"><span class="tick"></span> The stakes</div>
+      <h2 class="d2">Legacy just became a liability.</h2>
+      <p class="lede">AI collapsed the cost of work. The companies built around that are already pulling away.</p>
+    </div>
+    <div class="stakes-grid">
+      <div class="stake rv"><div class="lbl">New entrants</div><p>Your business model, run at a tenth of the headcount.</p></div>
+      <div class="stake rv"><div class="lbl">Old rivals</div><p>Your competitors have pilots live right now.</p></div>
+      <div class="stake rv"><div class="lbl">The clock</div><p>Models speed up every year. Your process doesn't.</p></div>
+      <div class="stake rv"><div class="lbl">The spend</div><p>Millions to consultants. Decks in return.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT WE DO -->
+<section class="work">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="eyebrow"><span class="tick"></span> What we do</div>
+      <h2 class="d2">We do the work, not the deck.</h2>
+      <p class="lede">A small senior team, embedded in your org, shipping automations into production.</p>
+    </div>
+    <div class="pb-table rv">
+      <div class="pb-head"><div>The old playbook</div><div>With Marker</div></div>
+      <div class="pb-row"><div class="old">Twelve months of discovery</div><div class="new"><span class="dot"></span>Working software in weeks</div></div>
+      <div class="pb-row"><div class="old">A deck and a roadmap</div><div class="new"><span class="dot"></span>Automations in production</div></div>
+      <div class="pb-row"><div class="old">Billable hours</div><div class="new"><span class="dot"></span>A savings target, up front</div></div>
+      <div class="pb-row"><div class="old">An army of juniors</div><div class="new"><span class="dot"></span>A few senior people who build</div></div>
+      <div class="pb-row"><div class="old">They leave; it decays</div><div class="new"><span class="dot"></span>Post-engagement, it runs itself</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="eyebrow"><span class="tick"></span> How it works</div>
+      <h2 class="d2">Wedge in. Spread out. Go&nbsp;on&nbsp;offense.</h2>
+      <p class="lede">First automation live in weeks. Whole functions in a quarter.</p>
+    </div>
+    <div class="flow">
+      <div class="flow-row rv">
+        <svg class="g" viewBox="0 0 100 100" fill="#4AB6A9" aria-hidden="true"><use href="#glyph-small"/></svg>
+        <div>
+          <h3>Start where it hurts</h3>
+          <p>We take one expensive, manual workflow and beat the team doing it today.</p>
+        </div>
+        <div class="stat"><div class="k">Manual work</div><div class="v">−70–80%</div></div>
+        <span class="arr">→</span>
+      </div>
+      <div class="flow-row rv">
+        <svg class="g" viewBox="0 0 100 100" fill="#1274EA" aria-hidden="true"><use href="#glyph-small"/></svg>
+        <div>
+          <h3>Expand across the org</h3>
+          <p>Every workflow we rebuild encodes how your company actually operates. Workflow twelve ships faster than workflow two.</p>
+        </div>
+        <div class="stat"><div class="k">Full functions</div><div class="v">1 quarter</div></div>
+        <span class="arr">→</span>
+      </div>
+      <div class="flow-row hot rv">
+        <svg class="g" viewBox="0 0 100 100" fill="#2B2B2B" aria-hidden="true"><use href="#glyph-small"/></svg>
+        <div>
+          <h3>Go on offense</h3>
+          <p>Capacity moves from process to product. Faster launches, better service — moves your competitors can't match.</p>
+        </div>
+        <div class="stat"><div class="k">The result</div><div class="v">Compounding</div></div>
+        <span class="arr">→</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- END STATE -->
+<section class="end on-dark">
+  <div class="wrap">
+    <div class="end-flex">
+      <div>
+        <div class="sec-head rv">
+          <div class="eyebrow"><span class="tick" style="background:var(--teal)"></span> The end state</div>
+          <h2 class="d2">The goal isn't survival.</h2>
+          <p class="lede">AI-native isn't a cost reduction program. It's a different company.</p>
+        </div>
+        <div class="end-grid">
+          <div class="end-cell rv"><div class="lbl">Economics</div><h3>Software margins, in a company that ships real things.</h3></div>
+          <div class="end-cell rv"><div class="lbl">Speed</div><h3>Decisions in days. Launches in weeks.</h3></div>
+          <div class="end-cell rv"><div class="lbl">Your benchmark</div><h3>Every model release, tested against your workflows within a day.</h3></div>
+          <div class="end-cell rv"><div class="lbl">A company brain</div><h3>Ask org-specific questions, get instant answers.</h3></div>
+        </div>
+      </div>
+      <svg class="end-glyph rv" viewBox="0 0 200 200" fill="url(#thermal)" aria-hidden="true"><use href="#glyph-cluster"/></svg>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL — placeholder attribution until a customer quote is cleared -->
+<section class="quote">
+  <div class="wrap">
+    <div class="quote-card rv">
+      <svg class="quote-glyph" viewBox="0 0 200 200" fill="url(#thermal)" aria-hidden="true"><use href="#glyph-cluster"/></svg>
+      <div>
+        <blockquote>&ldquo;Marker quietly became the operating layer our business was missing. It connected fragmented knowledge, automated repetitive work, and gave every team a shared understanding of what needed to happen next. It wasn't just greater efficiency — it was a fundamentally better way of working.&rdquo;</blockquote>
+        <div class="attr">
+          <span class="avatar" aria-hidden="true"></span>
+          <div class="who"><b>Customer name</b><span>Role, Company — pending sign-off</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="book">
+  <div class="wrap">
+    <h2 class="d2 rv">Your board is asking about&nbsp;AI.</h2>
+    <p class="lede rv">Show them a working system, not a deck. Book 30 minutes and we'll tell you what we'd automate first.</p>
+    <div class="btns rv">
+      <a class="btn btn-dark" href="#">Book a call <span class="arr">→</span></a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer id="team" class="footer-fig">
+  <div class="wrap">
+    <div class="footer-card">
+
+      <div class="ftr-nav">
+        <a class="ftr-nav-col" href="#team">
+          <svg class="ftr-ic" viewBox="0 0 100 100" fill="#000" aria-hidden="true"><use href="#glyph-small"/></svg>
+          <span>About us</span>
+        </a>
+        <a class="ftr-nav-col" href="#how"><span>Features</span></a>
+        <a class="ftr-nav-col" href="#"><span>Articles</span></a>
+        <a class="ftr-nav-col" href="#book"><span>Contact</span></a>
+      </div>
+
+      <div class="ftr-cloud" aria-hidden="true">
+        <div class="ftr-row" style="--shift:-2%">
+          <span class="ftr-pill">AI THAT WORKS WITH PEOPLE</span>
+          <span class="ftr-bar" style="width:12vw"></span>
+          <span class="ftr-dot"></span>
+          <span class="ftr-pill">AI THAT ADAPTS</span>
+          <span class="ftr-dot"></span><span class="ftr-dot"></span>
+          <span class="ftr-bar" style="width:10vw"></span>
+          <span class="ftr-pill">PRACTICAL AI</span>
+          <span class="ftr-bar" style="width:7vw"></span>
+        </div>
+        <div class="ftr-row" style="--shift:6%">
+          <span class="ftr-bar" style="width:9vw"></span>
+          <span class="ftr-pill">AUTOMATE THE REPETITIVE</span>
+          <span class="ftr-dot"></span>
+          <span class="ftr-pill">KEEP HUMANS IN CONTROL</span>
+          <span class="ftr-bar" style="width:9vw"></span>
+          <span class="ftr-pill">BUILT FOR REAL WORK</span>
+          <span class="ftr-dot"></span>
+          <span class="ftr-pill">PRACTICAL AI</span>
+          <span class="ftr-bar" style="width:8vw"></span>
+        </div>
+        <div class="ftr-row" style="--shift:-6%">
+          <span class="ftr-dot"></span><span class="ftr-dot"></span>
+          <span class="ftr-pill">DECISIONS OVER BUSYWORK</span>
+          <span class="ftr-bar" style="width:8vw"></span>
+          <span class="ftr-pill">MORE MEANINGFUL WORK</span>
+          <span class="ftr-dot"></span>
+          <span class="ftr-bar" style="width:13vw"></span>
+          <span class="ftr-dot"></span>
+          <span class="ftr-pill">AI THAT WORKS WITH PEOPLE</span>
+          <span class="ftr-bar" style="width:8vw"></span>
+        </div>
+        <div class="ftr-row" style="--shift:3%">
+          <span class="ftr-pill">CONNECT YOUR WORKFLOWS</span>
+          <span class="ftr-bar" style="width:12vw"></span>
+          <span class="ftr-pill">HUMAN FIRST</span>
+          <span class="ftr-dot"></span>
+          <span class="ftr-pill">CONNECT YOUR WORKFLOWS</span>
+          <span class="ftr-bar" style="width:9vw"></span>
+          <span class="ftr-pill">SHIP FASTER</span>
+          <span class="ftr-bar" style="width:12vw"></span>
+        </div>
+      </div>
+
+      <div class="ftr-bottom">
+        <div class="ftr-word">Marker</div>
+        <div class="ftr-links">
+          <a href="#book">Book a call</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Cookie Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Trust Center</a>
+          <a href="#">Manage Cookies</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var els = document.querySelectorAll('.rv');
+  if (reduce || !('IntersectionObserver' in window)) {
+    els.forEach(function(e){ e.classList.add('in'); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if (en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
+    });
+  },{threshold:.12,rootMargin:'0px 0px -6% 0px'});
+  els.forEach(function(e){ io.observe(e); });
+})();
+</script>
+
+</body>
+</html>
