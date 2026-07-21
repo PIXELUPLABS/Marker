@@ -275,7 +275,7 @@ header{
 
 .ftr-nav{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--card-line)}
 .ftr-nav-col{
-  display:flex;flex-direction:column;min-height:clamp(140px,16vw,220px);
+  display:flex;flex-direction:column;min-height:clamp(220px,30vw,420px);
   padding:14px 14px 24px 24px;border-left:1px solid var(--card-line);
   font-family:var(--font-body);font-size:1.05rem;font-weight:500;color:var(--ink);
   opacity:.55;transition:opacity .2s ease;
@@ -286,8 +286,8 @@ header{
 .ftr-ic{width:26px;height:26px;align-self:flex-end;transform:rotate(-45deg);color:var(--ink);opacity:0;transition:opacity .2s ease}
 .ftr-nav-col:hover .ftr-ic{opacity:1}
 
-.ftr-bottom{display:flex;align-items:stretch}
-.ftr-word{font-family:var(--font-display);font-weight:500;font-size:clamp(3.5rem,10vw,9rem);letter-spacing:-0.03em;color:var(--ink);line-height:1;display:flex;align-items:center;padding:0 clamp(20px,4vw,48px);flex:1;min-width:0}
+.ftr-bottom{display:flex;align-items:stretch;min-height:clamp(160px,14vw,220px)}
+.ftr-word{font-family:var(--font-display);font-weight:500;font-size:clamp(3.5rem,11vw,10.5rem);letter-spacing:-0.03em;color:var(--ink);line-height:1;display:flex;align-items:center;padding:0 clamp(20px,4vw,48px);flex:1;min-width:0}
 .ftr-links{display:flex;flex:1.4;align-items:flex-end;justify-content:flex-end;flex-wrap:wrap;row-gap:.5rem;column-gap:1.4rem;border-left:1px solid var(--card-line);padding:1.6rem clamp(16px,2.5vw,40px);font-size:clamp(.7rem,.85vw,.8125rem);color:var(--ink);min-width:0}
 .ftr-links a{opacity:.5;transition:opacity .2s ease}
 .ftr-links a:hover{opacity:1}
