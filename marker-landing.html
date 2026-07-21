@@ -110,6 +110,17 @@ section{padding:clamp(72px,9vw,128px) 0}
 .btn-light{background:#fff;color:var(--ink)}
 .btn-light:hover{background:var(--bg-2)}
 
+/* ============ Split button (pill + arrow chip, cohesive with nav CTA) ============ */
+.btn-split{padding:0;border-color:transparent;background:transparent;gap:.4rem}
+.btn-split .bs-label{display:inline-flex;align-items:center;padding:.72rem 1.3rem;border-radius:999px;font-weight:500;font-size:.9375rem;white-space:nowrap;transition:background .18s ease}
+.btn-split .bs-arrow{display:inline-flex;align-items:center;justify-content:center;width:2.5rem;align-self:stretch;border-radius:999px;transition:background .18s ease}
+.btn-split .bs-arrow svg{width:15px;height:15px}
+.btn-split:hover .bs-arrow svg{transform:translateX(2px);transition:transform .18s ease}
+.btn-dark.btn-split .bs-label,.btn-dark.btn-split .bs-arrow{background:var(--dark-1);color:#fff}
+.btn-dark.btn-split:hover .bs-label,.btn-dark.btn-split:hover .bs-arrow{background:#000}
+.btn-light.btn-split .bs-label,.btn-light.btn-split .bs-arrow{background:#fff;color:var(--ink)}
+.btn-light.btn-split:hover .bs-label,.btn-light.btn-split:hover .bs-arrow{background:var(--bg-2)}
+
 /* ============ Nav ============ */
 header{
   position:sticky;top:0;z-index:50;
@@ -256,16 +267,16 @@ header{
 }
 @media (max-width:640px){.cta-brace{display:none}}
 
-/* ============ Footer (Figma 734:2054) ============ */
+/* ============ Footer (Figma 745:597) ============ */
 :root{--card-bg:#E8E8E8;--card-line:#AEAEAE}
-.footer-fig{background:var(--card-bg);border-top:1px solid var(--card-line)}
+.footer-fig{background:var(--bg-2);padding:26px 28px}
 .footer-fig .wrap{max-width:none;padding:0}
-.footer-card{overflow:hidden}
+.footer-card{background:var(--card-bg);border:1px solid var(--card-line);border-radius:var(--r-lg);overflow:hidden}
 
 .ftr-nav{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--card-line)}
 .ftr-nav-col{
   display:flex;flex-direction:column;min-height:clamp(140px,16vw,220px);
-  padding:14px 14px 20px 24px;border-left:1px solid var(--card-line);
+  padding:14px 14px 24px 24px;border-left:1px solid var(--card-line);
   font-family:var(--font-body);font-size:1.05rem;font-weight:500;color:var(--ink);
   opacity:.55;transition:opacity .2s ease;
 }
@@ -275,25 +286,7 @@ header{
 .ftr-ic{width:26px;height:26px;align-self:flex-end;transform:rotate(-45deg);color:var(--ink);opacity:0;transition:opacity .2s ease}
 .ftr-nav-col:hover .ftr-ic{opacity:1}
 
-.ftr-cloud{padding:1.8rem 0;display:flex;flex-direction:column;gap:.6rem}
-.ftr-row{overflow:hidden;width:100%}
-.ftr-track{display:flex;align-items:center;gap:6px;width:max-content;animation:ftr-marquee linear infinite}
-.ftr-track.rev{animation-direction:reverse}
-.ftr-row:nth-child(1) .ftr-track{animation-duration:46s}
-.ftr-row:nth-child(2) .ftr-track{animation-duration:38s}
-.ftr-row:nth-child(3) .ftr-track{animation-duration:52s}
-.ftr-row:nth-child(4) .ftr-track{animation-duration:42s}
-.ftr-row:hover .ftr-track{animation-play-state:paused}
-@keyframes ftr-marquee{from{transform:translateX(0)}to{transform:translateX(-25%)}}
-.ftr-pill{
-  display:inline-flex;align-items:center;height:clamp(30px,3.6vw,40px);padding:0 1.1rem;
-  border-radius:999px;border:1px solid var(--teal);background:var(--card-bg);color:var(--ink-3);
-  font-family:var(--font-body);font-weight:600;font-size:.7rem;letter-spacing:.08em;white-space:nowrap;
-}
-.ftr-bar{height:clamp(30px,3.6vw,40px);border-radius:999px;background:var(--teal);flex:none}
-.ftr-dot{width:clamp(30px,3.6vw,40px);height:clamp(30px,3.6vw,40px);border-radius:50%;background:var(--teal);flex:none}
-
-.ftr-bottom{display:flex;align-items:stretch;border-top:1px solid var(--card-line)}
+.ftr-bottom{display:flex;align-items:stretch}
 .ftr-word{font-family:var(--font-display);font-weight:500;font-size:clamp(3.5rem,10vw,9rem);letter-spacing:-0.03em;color:var(--ink);line-height:1;display:flex;align-items:center;padding:0 clamp(20px,4vw,48px);flex:1;min-width:0}
 .ftr-links{display:flex;flex:1.4;align-items:flex-end;justify-content:flex-end;flex-wrap:wrap;row-gap:.5rem;column-gap:1.4rem;border-left:1px solid var(--card-line);padding:1.6rem clamp(16px,2.5vw,40px);font-size:clamp(.7rem,.85vw,.8125rem);color:var(--ink);min-width:0}
 .ftr-links a{opacity:.5;transition:opacity .2s ease}
@@ -306,7 +299,6 @@ header{
   .rv{opacity:1;transform:none;transition:none}
   html{scroll-behavior:auto}
   .btn,.flow-row,.stake,.end-cell{transition:none}
-  .ftr-track{animation:none}
 }
 
 /* ============ Responsive ============ */
@@ -325,7 +317,6 @@ header{
   .hero-glyph{display:none}
   .ftr-nav{grid-template-columns:repeat(2,1fr)}
   .ftr-nav-col:nth-child(3){border-left:none}
-  .ftr-cloud{display:none}
   .ftr-bottom{flex-direction:column}
   .ftr-links{border-left:none;border-top:1px solid var(--card-line);justify-content:flex-start}
 }
@@ -440,7 +431,10 @@ header{
     </div>
     <p class="lede rv in">We make enterprises AI-native. Not a strategy deck — working systems, shipped into your business in weeks.</p>
     <div class="hero-cta rv in">
-      <a class="btn btn-dark" href="#book">Book a call <span class="arr"><svg viewBox="0 0 21 20" fill="currentColor" aria-hidden="true"><use href="#mk-arrow"/></svg></span></a>
+      <a class="btn btn-dark btn-split" href="#book">
+        <span class="bs-label">Book a call</span>
+        <span class="bs-arrow"><svg viewBox="129.5 11.3 13.9 11.5" fill="none" aria-hidden="true"><path d="M130.43 17.104H142.374M137.623 21.8545L142.374 17.104L137.623 12.3535" stroke="#fff" stroke-width="1.35728"/></svg></span>
+      </a>
       <a class="btn btn-ghost" href="#how">How it works</a>
     </div>
   </div>
@@ -471,7 +465,10 @@ header{
         <h2 class="d2">Legacy just became a liability.</h2>
         <p class="lede">AI collapsed the cost of work. The companies built around that are already pulling away.</p>
       </div>
-      <a class="btn btn-light" href="#book">Learn more <span class="arr"><svg viewBox="0 0 21 20" fill="currentColor" aria-hidden="true"><use href="#mk-arrow"/></svg></span></a>
+      <a class="btn btn-light btn-split" href="#book">
+        <span class="bs-label">Learn more</span>
+        <span class="bs-arrow"><svg viewBox="129.5 11.3 13.9 11.5" fill="none" aria-hidden="true"><path d="M130.43 17.104H142.374M137.623 21.8545L142.374 17.104L137.623 12.3535" stroke="#1A1A1A" stroke-width="1.35728"/></svg></span>
+      </a>
     </div>
     <div class="stakes-grid">
       <div class="stake-card rv">
@@ -640,162 +637,6 @@ header{
           <span>Contact</span>
         </a>
       </div>
-
-      <div class="ftr-cloud" aria-hidden="true">
-        <div class="ftr-row">
-          <div class="ftr-track">
-            <span class="ftr-pill">AI THAT WORKS WITH PEOPLE</span>
-            <span class="ftr-bar" style="width:12vw"></span>
-            <span class="ftr-dot"></span>
-            <span class="ftr-pill">AI THAT ADAPTS</span>
-            <span class="ftr-dot"></span><span class="ftr-dot"></span>
-            <span class="ftr-bar" style="width:10vw"></span>
-            <span class="ftr-pill">PRACTICAL AI</span>
-            <span class="ftr-bar" style="width:7vw"></span>
-            <span class="ftr-pill">AI THAT WORKS WITH PEOPLE</span>
-            <span class="ftr-bar" style="width:12vw"></span>
-            <span class="ftr-dot"></span>
-            <span class="ftr-pill">AI THAT ADAPTS</span>
-            <span class="ftr-dot"></span><span class="ftr-dot"></span>
-            <span class="ftr-bar" style="width:10vw"></span>
-            <span class="ftr-pill">PRACTICAL AI</span>
-            <span class="ftr-bar" style="width:7vw"></span>
-            <span class="ftr-pill">AI THAT WORKS WITH PEOPLE</span>
-            <span class="ftr-bar" style="width:12vw"></span>
-            <span class="ftr-dot"></span>
-            <span class="ftr-pill">AI THAT ADAPTS</span>
-            <span class="ftr-dot"></span><span class="ftr-dot"></span>
-            <span class="ftr-bar" style="width:10vw"></span>
-            <span class="ftr-pill">PRACTICAL AI</span>
-            <span class="ftr-bar" style="width:7vw"></span>
-            <span class="ftr-pill">AI THAT WORKS WITH PEOPLE</span>
-            <span class="ftr-bar" style="width:12vw"></span>
-            <span class="ftr-dot"></span>
-            <span class="ftr-pill">AI THAT ADAPTS</span>
-            <span class="ftr-dot"></span><span class="ftr-dot"></span>
-            <span class="ftr-bar" style="width:10vw"></span>
-            <span class="ftr-pill">PRACTICAL AI</span>
-            <span class="ftr-bar" style="width:7vw"></span>
-          </div>
-        </div>
-        <div class="ftr-row">
-          <div class="ftr-track rev">
-            <span class="ftr-bar" style="width:9vw"></span>
-            <span class="ftr-pill">AUTOMATE THE REPETITIVE</span>
-            <span class="ftr-dot"></span>
-            <span class="ftr-pill">KEEP HUMANS IN CONTROL</span>
-            <span class="ftr-bar" style="width:9vw"></span>
-            <span class="ftr-pill">BUILT FOR REAL WORK</span>
-            <span class="ftr-dot"></span>
-            <span class="ftr-pill">PRACTICAL AI</span>
-            <span class="ftr-bar" style="width:8vw"></span>
-            <span class="ftr-bar" style="width:9vw"></span>
-            <span class="ftr-pill">AUTOMATE THE REPETITIVE</span>
-            <span class="ftr-dot"></span>
-            <span class="ftr-pill">KEEP HUMANS IN CONTROL</span>
-            <span class="ftr-bar" style="width:9vw"></span>
-            <span class="ftr-pill">BUILT FOR REAL WORK</span>
-            <span class="ftr-dot"></span>
-            <span class="ftr-pill">PRACTICAL AI</span>
-            <span class="ftr-bar" style="width:8vw"></span>
-            <span class="ftr-bar" style="width:9vw"></span>
-            <span class="ftr-pill">AUTOMATE THE REPETITIVE</span>
-            <span class="ftr-dot"></span>
-            <span class="ftr-pill">KEEP HUMANS IN CONTROL</span>
-            <span class="ftr-bar" style="width:9vw"></span>
-            <span class="ftr-pill">BUILT FOR REAL WORK</span>
-            <span class="ftr-dot"></span>
-            <span class="ftr-pill">PRACTICAL AI</span>
-            <span class="ftr-bar" style="width:8vw"></span>
-            <span class="ftr-bar" style="width:9vw"></span>
-            <span class="ftr-pill">AUTOMATE THE REPETITIVE</span>
-            <span class="ftr-dot"></span>
-            <span class="ftr-pill">KEEP HUMANS IN CONTROL</span>
-            <span class="ftr-bar" style="width:9vw"></span>
-            <span class="ftr-pill">BUILT FOR REAL WORK</span>
-            <span class="ftr-dot"></span>
-            <span class="ftr-pill">PRACTICAL AI</span>
-            <span class="ftr-bar" style="width:8vw"></span>
-          </div>
-        </div>
-        <div class="ftr-row">
-          <div class="ftr-track">
-            <span class="ftr-dot"></span><span class="ftr-dot"></span>
-            <span class="ftr-pill">DECISIONS OVER BUSYWORK</span>
-            <span class="ftr-bar" style="width:8vw"></span>
-            <span class="ftr-pill">MORE MEANINGFUL WORK</span>
-            <span class="ftr-dot"></span>
-            <span class="ftr-bar" style="width:13vw"></span>
-            <span class="ftr-dot"></span>
-            <span class="ftr-pill">AI THAT WORKS WITH PEOPLE</span>
-            <span class="ftr-bar" style="width:8vw"></span>
-            <span class="ftr-dot"></span><span class="ftr-dot"></span>
-            <span class="ftr-pill">DECISIONS OVER BUSYWORK</span>
-            <span class="ftr-bar" style="width:8vw"></span>
-            <span class="ftr-pill">MORE MEANINGFUL WORK</span>
-            <span class="ftr-dot"></span>
-            <span class="ftr-bar" style="width:13vw"></span>
-            <span class="ftr-dot"></span>
-            <span class="ftr-pill">AI THAT WORKS WITH PEOPLE</span>
-            <span class="ftr-bar" style="width:8vw"></span>
-            <span class="ftr-dot"></span><span class="ftr-dot"></span>
-            <span class="ftr-pill">DECISIONS OVER BUSYWORK</span>
-            <span class="ftr-bar" style="width:8vw"></span>
-            <span class="ftr-pill">MORE MEANINGFUL WORK</span>
-            <span class="ftr-dot"></span>
-            <span class="ftr-bar" style="width:13vw"></span>
-            <span class="ftr-dot"></span>
-            <span class="ftr-pill">AI THAT WORKS WITH PEOPLE</span>
-            <span class="ftr-bar" style="width:8vw"></span>
-            <span class="ftr-dot"></span><span class="ftr-dot"></span>
-            <span class="ftr-pill">DECISIONS OVER BUSYWORK</span>
-            <span class="ftr-bar" style="width:8vw"></span>
-            <span class="ftr-pill">MORE MEANINGFUL WORK</span>
-            <span class="ftr-dot"></span>
-            <span class="ftr-bar" style="width:13vw"></span>
-            <span class="ftr-dot"></span>
-            <span class="ftr-pill">AI THAT WORKS WITH PEOPLE</span>
-            <span class="ftr-bar" style="width:8vw"></span>
-          </div>
-        </div>
-        <div class="ftr-row">
-          <div class="ftr-track rev">
-            <span class="ftr-pill">CONNECT YOUR WORKFLOWS</span>
-            <span class="ftr-bar" style="width:12vw"></span>
-            <span class="ftr-pill">HUMAN FIRST</span>
-            <span class="ftr-dot"></span>
-            <span class="ftr-pill">CONNECT YOUR WORKFLOWS</span>
-            <span class="ftr-bar" style="width:9vw"></span>
-            <span class="ftr-pill">SHIP FASTER</span>
-            <span class="ftr-bar" style="width:12vw"></span>
-            <span class="ftr-pill">CONNECT YOUR WORKFLOWS</span>
-            <span class="ftr-bar" style="width:12vw"></span>
-            <span class="ftr-pill">HUMAN FIRST</span>
-            <span class="ftr-dot"></span>
-            <span class="ftr-pill">CONNECT YOUR WORKFLOWS</span>
-            <span class="ftr-bar" style="width:9vw"></span>
-            <span class="ftr-pill">SHIP FASTER</span>
-            <span class="ftr-bar" style="width:12vw"></span>
-            <span class="ftr-pill">CONNECT YOUR WORKFLOWS</span>
-            <span class="ftr-bar" style="width:12vw"></span>
-            <span class="ftr-pill">HUMAN FIRST</span>
-            <span class="ftr-dot"></span>
-            <span class="ftr-pill">CONNECT YOUR WORKFLOWS</span>
-            <span class="ftr-bar" style="width:9vw"></span>
-            <span class="ftr-pill">SHIP FASTER</span>
-            <span class="ftr-bar" style="width:12vw"></span>
-            <span class="ftr-pill">CONNECT YOUR WORKFLOWS</span>
-            <span class="ftr-bar" style="width:12vw"></span>
-            <span class="ftr-pill">HUMAN FIRST</span>
-            <span class="ftr-dot"></span>
-            <span class="ftr-pill">CONNECT YOUR WORKFLOWS</span>
-            <span class="ftr-bar" style="width:9vw"></span>
-            <span class="ftr-pill">SHIP FASTER</span>
-            <span class="ftr-bar" style="width:12vw"></span>
-          </div>
-        </div>
-      </div>
-
       <div class="ftr-bottom">
         <div class="ftr-word">Marker</div>
         <div class="ftr-links">
