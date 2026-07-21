@@ -5,6 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Marker — We make enterprises AI-native</title>
 <meta name="description" content="Marker makes enterprises AI-native. Not a strategy deck — working systems, shipped into your business in weeks.">
+<meta name="theme-color" content="#FAFAFA">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Marker">
+<meta property="og:title" content="Marker — We make enterprises AI-native">
+<meta property="og:description" content="Not a strategy deck — working systems, shipped into your business in weeks.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Marker — We make enterprises AI-native">
+<meta name="twitter:description" content="Not a strategy deck — working systems, shipped into your business in weeks.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -166.5 656 656' %3E%3Cpath fill='%231A1A1A' d='M52.3161 158.312H20.5599C9.205 158.312 0 167.517 0 178.871V302.231C0 313.586 9.20497 322.791 20.5599 322.791H138.677C144.62 322.791 150.273 320.219 154.177 315.739L269.646 183.234C272.061 180.462 275.557 178.871 279.234 178.871C286.257 178.871 291.951 184.565 291.951 191.589V302.231C291.951 313.586 301.156 322.791 312.511 322.791H368.948C374.892 322.791 380.544 320.219 384.449 315.739L500.339 182.749C502.486 180.286 505.594 178.871 508.862 178.871C515.105 178.871 520.167 183.933 520.167 190.176V302.231C520.167 313.586 529.371 322.791 540.726 322.791H635.302C646.657 322.791 655.862 313.586 655.862 302.231V176.815C655.862 165.461 646.657 156.256 635.302 156.256H540.726C529.371 156.256 520.167 147.051 520.167 135.696V20.5599C520.167 9.205 510.961 0 499.607 0H439.084C433.125 0 427.46 2.58517 423.555 7.08591L311.776 135.915C309.631 138.387 306.519 139.808 303.246 139.808C297.008 139.808 291.951 134.751 291.951 128.513V20.5599C291.951 9.205 282.746 0 271.391 0H208.795C202.847 0 197.19 2.57639 193.285 7.06395L67.8264 151.248C63.9216 155.735 58.2646 158.312 52.3161 158.312Z'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -55,13 +65,16 @@ a{color:inherit;text-decoration:none}
 .d3{font-size:clamp(1.35rem,2.4vw,1.75rem);line-height:1.2;font-weight:500}
 .eyebrow{
   font-family:var(--font-body);font-weight:600;font-size:.75rem;
-  letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);
-  display:flex;align-items:center;gap:.6rem;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);
+  display:inline-flex;align-items:center;gap:.5rem;
+  border:1px solid var(--stroke-1);border-radius:999px;background:var(--bg-1);
+  padding:.45rem 1rem .45rem .6rem;width:fit-content;
 }
-.eyebrow .tick{width:10px;height:10px;background:var(--amber);flex:none}
+.eyebrow .ic{width:15px;height:15px;flex:none;color:var(--amber)}
+.eyebrow .tick{width:10px;height:10px;background:var(--amber);flex:none;border-radius:2px}
 .lede{font-size:1.125rem;line-height:1.55;color:var(--ink-2);letter-spacing:-0.015em;max-width:34em}
 .on-dark .lede{color:var(--ink-inv-2)}
-.on-dark .eyebrow{color:#8f8f8f}
+.on-dark .eyebrow{color:#ddd;border-color:var(--stroke-2);background:transparent}
 
 /* ============ Layout ============ */
 .wrap{max-width:var(--max);margin:0 auto;padding:0 clamp(20px,4vw,48px)}
@@ -101,6 +114,22 @@ header{
 .nav-right{display:flex;align-items:center;gap:1.6rem}
 .nav-link{font-size:.9375rem;font-weight:500;color:var(--ink-2)}
 .nav-link:hover{color:var(--ink)}
+
+/* ============ Quicknav (floating step nav) ============ */
+.quicknav{
+  position:fixed;left:32px;top:50%;transform:translateY(-50%);z-index:40;
+  display:flex;flex-direction:column;gap:1.05rem;width:180px;
+}
+.qn-item{
+  display:flex;align-items:center;gap:.6rem;font-size:.8125rem;font-weight:500;
+  color:var(--ink-3);opacity:.45;padding-bottom:.55rem;border-bottom:1px dashed var(--stroke-1);
+  transition:opacity .2s ease,color .2s ease;
+}
+.qn-ic{width:14px;height:14px;flex:none;color:var(--ink-3);transition:color .2s ease}
+.qn-item:hover{opacity:.8}
+.qn-item.active{opacity:1;color:var(--ink)}
+.qn-item.active .qn-ic{color:var(--qn-color,var(--amber))}
+@media (max-width:1600px){.quicknav{display:none}}
 
 /* ============ Hero ============ */
 .hero{padding:clamp(88px,11vw,150px) 0 clamp(80px,10vw,130px);text-align:center;position:relative;overflow:hidden}
@@ -185,31 +214,47 @@ header{
 .end-flex{display:grid;grid-template-columns:1fr auto;gap:clamp(2rem,5vw,5rem);align-items:center}
 .end-glyph{width:clamp(160px,20vw,250px)}
 
-/* ============ Testimonial ============ */
-.quote{background:var(--bg-1);border-top:1px solid var(--stroke-1)}
-.quote-card{
-  display:grid;grid-template-columns:auto 1fr;gap:clamp(2rem,5vw,4.5rem);align-items:center;
-  border:1px solid var(--stroke-1);border-radius:var(--r-lg);background:var(--bg-2);
-  padding:clamp(2rem,4.5vw,4rem);
+/* ============ Testimonial (carousel) ============ */
+.quote{background:var(--bg-1);border-top:1px solid var(--stroke-1);position:relative;overflow:hidden}
+.quote-blob{position:absolute;left:-70px;bottom:-90px;width:clamp(220px,26vw,340px);z-index:0;opacity:.92;pointer-events:none}
+.quote-card{position:relative;z-index:1;max-width:720px}
+.quote-top{display:flex;flex-direction:column;gap:1rem;margin-bottom:1.8rem}
+.quote-nav{display:flex;gap:.5rem}
+.qc-btn{
+  width:34px;height:34px;border:1px solid var(--stroke-1);border-radius:8px;background:var(--bg-1);
+  display:grid;place-items:center;color:var(--ink-3);cursor:pointer;font-size:1rem;line-height:1;
+  transition:border-color .2s ease,color .2s ease;
 }
-.quote-glyph{width:clamp(140px,16vw,210px)}
-.quote blockquote{font-family:var(--font-display);font-weight:500;font-size:clamp(1.15rem,2vw,1.5rem);letter-spacing:-0.02em;line-height:1.4;text-wrap:pretty}
-.quote .attr{margin-top:1.4rem;display:flex;align-items:center;gap:.8rem}
-.quote .attr .avatar{width:36px;height:36px;border-radius:50%;background:var(--grad-thermal)}
+.qc-btn:hover{border-color:var(--ink);color:var(--ink)}
+.quote-meta{display:flex;align-items:center;gap:.9rem;font-size:.8125rem;color:var(--ink-3)}
+.qc-count{font-weight:600;color:var(--ink)}
+.quote blockquote{font-family:var(--font-display);font-weight:500;font-size:clamp(1.25rem,2.4vw,1.75rem);letter-spacing:-0.02em;line-height:1.38;text-wrap:pretty}
+.quote .attr{margin-top:1.8rem;display:flex;align-items:center;gap:.8rem}
+.quote .attr .avatar{width:38px;height:38px;border-radius:50%;background:var(--grad-thermal);flex:none}
 .quote .attr .who{font-size:.875rem}
 .quote .attr .who b{display:block;font-weight:600}
 .quote .attr .who span{color:var(--ink-3)}
 
-/* ============ CTA band ============ */
-.cta{background:var(--amber);text-align:center}
+/* ============ CTA (bracket card) ============ */
+.cta{background:var(--bg-2);text-align:center}
+.cta-card{
+  position:relative;max-width:760px;margin:0 auto;
+  background:var(--bg-1);border:1.5px dashed var(--amber);border-radius:40px;
+  padding:clamp(3rem,7vw,4.5rem) clamp(2.5rem,9vw,6rem);
+}
+.cta-brace{position:absolute;top:50%;transform:translateY(-50%);width:clamp(30px,4.5vw,46px);color:var(--amber);pointer-events:none}
+.cta-brace.l{left:clamp(-14px,-2.4vw,4px)}
+.cta-brace.r{right:clamp(-14px,-2.4vw,4px);transform:translateY(-50%) scaleX(-1)}
 .cta h2{max-width:16ch;margin:0 auto}
-.cta .lede{color:#4a3a05;margin:1.3rem auto 0;text-align:center}
+.cta .lede{margin:1.3rem auto 0;text-align:center}
 .cta .btns{display:flex;justify-content:center;gap:.8rem;margin-top:2.2rem;flex-wrap:wrap}
+@media (max-width:640px){.cta-brace{display:none}}
 
 /* ============ Footer (Figma 734:2054) ============ */
 :root{--card-bg:#E8E8E8;--card-line:#AEAEAE}
-.footer-fig{background:var(--bg-2);padding:clamp(40px,5vw,64px) 0}
-.footer-card{background:var(--card-bg);border:1px solid var(--card-line);border-radius:var(--r-lg);overflow:hidden}
+.footer-fig{background:var(--card-bg);border-top:1px solid var(--card-line)}
+.footer-fig .wrap{max-width:none;padding:0}
+.footer-card{overflow:hidden}
 
 .ftr-nav{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--card-line)}
 .ftr-nav-col{
@@ -221,21 +266,30 @@ header{
 .ftr-nav-col:first-child{border-left:none;opacity:1}
 .ftr-nav-col:hover{opacity:1}
 .ftr-nav-col span{margin-top:auto}
-.ftr-ic{width:26px;height:26px;align-self:flex-end;transform:rotate(-45deg);color:var(--ink)}
+.ftr-ic{width:26px;height:26px;align-self:flex-end;transform:rotate(-45deg);color:var(--ink);opacity:0;transition:opacity .2s ease}
+.ftr-nav-col:hover .ftr-ic{opacity:1}
 
-.ftr-cloud{position:relative;overflow:hidden;padding:1.8rem 0;display:flex;flex-direction:column;gap:.5rem}
-.ftr-row{display:flex;align-items:center;gap:6px;white-space:nowrap;justify-content:center;margin-left:var(--shift,0)}
+.ftr-cloud{padding:1.8rem 0;display:flex;flex-direction:column;gap:.6rem}
+.ftr-row{overflow:hidden;width:100%}
+.ftr-track{display:flex;align-items:center;gap:6px;width:max-content;animation:ftr-marquee linear infinite}
+.ftr-track.rev{animation-direction:reverse}
+.ftr-row:nth-child(1) .ftr-track{animation-duration:46s}
+.ftr-row:nth-child(2) .ftr-track{animation-duration:38s}
+.ftr-row:nth-child(3) .ftr-track{animation-duration:52s}
+.ftr-row:nth-child(4) .ftr-track{animation-duration:42s}
+.ftr-row:hover .ftr-track{animation-play-state:paused}
+@keyframes ftr-marquee{from{transform:translateX(0)}to{transform:translateX(-25%)}}
 .ftr-pill{
   display:inline-flex;align-items:center;height:clamp(30px,3.6vw,40px);padding:0 1.1rem;
-  border-radius:999px;border:1px solid var(--teal);background:var(--card-bg);color:var(--teal);
-  font-family:var(--font-body);font-weight:600;font-size:.7rem;letter-spacing:.08em;
+  border-radius:999px;border:1px solid var(--teal);background:var(--card-bg);color:var(--ink-3);
+  font-family:var(--font-body);font-weight:600;font-size:.7rem;letter-spacing:.08em;white-space:nowrap;
 }
 .ftr-bar{height:clamp(30px,3.6vw,40px);border-radius:999px;background:var(--teal);flex:none}
 .ftr-dot{width:clamp(30px,3.6vw,40px);height:clamp(30px,3.6vw,40px);border-radius:50%;background:var(--teal);flex:none}
 
 .ftr-bottom{display:flex;align-items:stretch;border-top:1px solid var(--card-line)}
 .ftr-word{font-family:var(--font-display);font-weight:500;font-size:clamp(3.5rem,10vw,9rem);letter-spacing:-0.03em;color:var(--ink);line-height:1;display:flex;align-items:center;padding:0 clamp(20px,4vw,48px);flex:1;min-width:0}
-.ftr-links{display:flex;flex:1.4;align-items:flex-end;justify-content:space-between;flex-wrap:nowrap;gap:.7rem;border-left:1px solid var(--card-line);padding:1.6rem clamp(16px,2.5vw,40px);font-size:clamp(.7rem,.85vw,.8125rem);color:var(--ink);white-space:nowrap;overflow-x:auto;min-width:0}
+.ftr-links{display:flex;flex:1.4;align-items:flex-end;justify-content:flex-end;flex-wrap:wrap;row-gap:.5rem;column-gap:1.4rem;border-left:1px solid var(--card-line);padding:1.6rem clamp(16px,2.5vw,40px);font-size:clamp(.7rem,.85vw,.8125rem);color:var(--ink);min-width:0}
 .ftr-links a{opacity:.5;transition:opacity .2s ease}
 .ftr-links a:hover{opacity:1}
 
@@ -246,6 +300,7 @@ header{
   .rv{opacity:1;transform:none;transition:none}
   html{scroll-behavior:auto}
   .btn,.flow-row,.stake,.end-cell{transition:none}
+  .ftr-track{animation:none}
 }
 
 /* ============ Responsive ============ */
@@ -266,7 +321,7 @@ header{
   .ftr-nav-col:nth-child(3){border-left:none}
   .ftr-cloud{display:none}
   .ftr-bottom{flex-direction:column}
-  .ftr-links{border-left:none;border-top:1px solid var(--card-line);justify-content:flex-start;flex-wrap:wrap;white-space:normal;overflow-x:visible}
+  .ftr-links{border-left:none;border-top:1px solid var(--card-line);justify-content:flex-start}
 }
 @media (max-width:560px){
   .stakes-grid{grid-template-columns:1fr}
@@ -321,6 +376,18 @@ header{
       <path d="M0 0h34v10H10v24H0z"/>
       <rect x="14" y="14" width="8" height="8"/>
     </g>
+    <!-- sparkle/diamond badge icon, used in eyebrow pills + quicknav -->
+    <path id="mk-diamond" d="M10 0C10 5.523 14.477 10 20 10C14.477 10 10 14.477 10 20C10 14.477 5.523 10 0 10C5.523 10 10 5.523 10 0Z"/>
+    <!-- amber goo-blob brace, used in the closing CTA -->
+    <g id="mk-brace">
+      <g filter="url(#goo)">
+        <circle cx="53" cy="17" r="17"/>
+        <circle cx="53" cy="279" r="17"/>
+        <rect x="18" y="17" width="36" height="53" rx="18"/>
+        <rect x="18" y="226" width="36" height="53" rx="18"/>
+        <rect x="0" y="70" width="36" height="156" rx="18"/>
+      </g>
+    </g>
     <!-- Marker logo lockup (mark + wordmark) -->
     <g id="logo-mark" fill="currentColor">
       <path d="M40.817 137.589H16.0409C7.18174 137.589 0 144.771 0 153.63V249.875C0 258.734 7.18174 265.916 16.0409 265.916H108.196C112.833 265.916 117.243 263.909 120.289 260.413L210.377 157.033C212.262 154.871 214.99 153.63 217.858 153.63C223.338 153.63 227.78 158.072 227.78 163.552V249.875C227.78 258.734 234.962 265.916 243.821 265.916H287.853C292.49 265.916 296.9 263.909 299.947 260.413L390.365 156.655C392.04 154.733 394.464 153.63 397.014 153.63C401.885 153.63 405.834 157.579 405.834 162.45V249.875C405.834 258.734 413.015 265.916 421.875 265.916H495.662C504.522 265.916 511.703 258.734 511.703 249.875V152.026C511.703 143.167 504.522 135.985 495.662 135.985H421.875C413.015 135.985 405.834 128.803 405.834 119.944V30.1152C405.834 21.2561 398.652 14.0743 389.793 14.0743H342.573C337.924 14.0743 333.504 16.0913 330.457 19.6028L243.248 120.115C241.574 122.044 239.146 123.152 236.592 123.152C231.725 123.152 227.78 119.207 227.78 114.34V30.1152C227.78 21.2561 220.598 14.0743 211.739 14.0743H162.902C158.261 14.0743 153.847 16.0844 150.801 19.5856L52.9181 132.078C49.8716 135.579 45.458 137.589 40.817 137.589Z"/>
@@ -341,6 +408,13 @@ header{
     </nav>
   </div>
 </header>
+
+<nav class="quicknav" aria-label="Page sections">
+  <a href="#stakes" class="qn-item" style="--qn-color:var(--amber)"><svg class="qn-ic" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><use href="#mk-diamond"/></svg><span>The high stakes</span></a>
+  <a href="#work" class="qn-item" style="--qn-color:var(--teal)"><svg class="qn-ic" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><use href="#mk-diamond"/></svg><span>What we do</span></a>
+  <a href="#how" class="qn-item" style="--qn-color:var(--blue)"><svg class="qn-ic" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><use href="#mk-diamond"/></svg><span>How it works</span></a>
+  <a href="#end" class="qn-item" style="--qn-color:var(--teal)"><svg class="qn-ic" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><use href="#mk-diamond"/></svg><span>The end state</span></a>
+</nav>
 
 <main>
 
@@ -381,10 +455,10 @@ header{
 </section>
 
 <!-- STAKES -->
-<section class="stakes on-dark">
+<section class="stakes on-dark" id="stakes">
   <div class="wrap">
     <div class="sec-head rv">
-      <div class="eyebrow"><span class="tick"></span> The stakes</div>
+      <div class="eyebrow"><svg class="ic" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><use href="#mk-diamond"/></svg> The stakes</div>
       <h2 class="d2">Legacy just became a liability.</h2>
       <p class="lede">AI collapsed the cost of work. The companies built around that are already pulling away.</p>
     </div>
@@ -398,10 +472,10 @@ header{
 </section>
 
 <!-- WHAT WE DO -->
-<section class="work">
+<section class="work" id="work">
   <div class="wrap">
     <div class="sec-head rv">
-      <div class="eyebrow"><span class="tick"></span> What we do</div>
+      <div class="eyebrow"><svg class="ic" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><use href="#mk-diamond"/></svg> What we do</div>
       <h2 class="d2">We do the work, not the deck.</h2>
       <p class="lede">A small senior team, embedded in your org, shipping automations into production.</p>
     </div>
@@ -420,7 +494,7 @@ header{
 <section class="how" id="how">
   <div class="wrap">
     <div class="sec-head rv">
-      <div class="eyebrow"><span class="tick"></span> How it works</div>
+      <div class="eyebrow"><svg class="ic" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><use href="#mk-diamond"/></svg> How it works</div>
       <h2 class="d2">Wedge in. Spread out. Go&nbsp;on&nbsp;offense.</h2>
       <p class="lede">First automation live in weeks. Whole functions in a quarter.</p>
     </div>
@@ -457,12 +531,12 @@ header{
 </section>
 
 <!-- END STATE -->
-<section class="end on-dark">
+<section class="end on-dark" id="end">
   <div class="wrap">
     <div class="end-flex">
       <div>
         <div class="sec-head rv">
-          <div class="eyebrow"><span class="tick" style="background:var(--teal)"></span> The end state</div>
+          <div class="eyebrow"><svg class="ic" viewBox="0 0 20 20" fill="currentColor" style="color:var(--teal)" aria-hidden="true"><use href="#mk-diamond"/></svg> The end state</div>
           <h2 class="d2">The goal isn't survival.</h2>
           <p class="lede">AI-native isn't a cost reduction program. It's a different company.</p>
         </div>
@@ -478,17 +552,22 @@ header{
   </div>
 </section>
 
-<!-- TESTIMONIAL — placeholder attribution until a customer quote is cleared -->
+<!-- TESTIMONIAL — first slide is real copy with attribution pending sign-off; remaining slides are mock content -->
 <section class="quote">
+  <svg class="quote-blob" viewBox="0 0 200 200" fill="url(#thermal)" aria-hidden="true"><use href="#glyph-cluster"/></svg>
   <div class="wrap">
     <div class="quote-card rv">
-      <svg class="quote-glyph" viewBox="0 0 200 200" fill="url(#thermal)" aria-hidden="true"><use href="#glyph-cluster"/></svg>
-      <div>
-        <blockquote>&ldquo;Marker quietly became the operating layer our business was missing. It connected fragmented knowledge, automated repetitive work, and gave every team a shared understanding of what needed to happen next. It wasn't just greater efficiency — it was a fundamentally better way of working.&rdquo;</blockquote>
-        <div class="attr">
-          <span class="avatar" aria-hidden="true"></span>
-          <div class="who"><b>Customer name</b><span>Role, Company — pending sign-off</span></div>
+      <div class="quote-top">
+        <div class="quote-nav">
+          <button class="qc-btn" type="button" data-dir="-1" aria-label="Previous testimonial">←</button>
+          <button class="qc-btn" type="button" data-dir="1" aria-label="Next testimonial">→</button>
         </div>
+        <div class="quote-meta"><span class="qc-count"><span id="qcIdx">1</span> / 4</span><span>WHAT OUR CLIENTS SAY:</span></div>
+      </div>
+      <blockquote id="qcText">&ldquo;Marker quietly became the operating layer our business was missing. It connected fragmented knowledge, automated repetitive work, and gave every team a shared understanding of what needed to happen next. It wasn't just greater efficiency — it was a fundamentally better way of working.&rdquo;</blockquote>
+      <div class="attr">
+        <span class="avatar" aria-hidden="true"></span>
+        <div class="who"><b id="qcName">Customer name</b><span id="qcRole">Role, Company — pending sign-off</span></div>
       </div>
     </div>
   </div>
@@ -497,10 +576,14 @@ header{
 <!-- CTA -->
 <section class="cta" id="book">
   <div class="wrap">
-    <h2 class="d2 rv">Your board is asking about&nbsp;AI.</h2>
-    <p class="lede rv">Show them a working system, not a deck. Book 30 minutes and we'll tell you what we'd automate first.</p>
-    <div class="btns rv">
-      <a class="btn btn-dark" href="#">Book a call <span class="arr">→</span></a>
+    <div class="cta-card rv">
+      <svg class="cta-brace l" viewBox="0 0 106 296" fill="currentColor" aria-hidden="true"><use href="#mk-brace"/></svg>
+      <svg class="cta-brace r" viewBox="0 0 106 296" fill="currentColor" aria-hidden="true"><use href="#mk-brace"/></svg>
+      <h2 class="d2">Your board is asking about&nbsp;AI.</h2>
+      <p class="lede">Show them a working system, not a deck. Book 30 minutes and we'll tell you what we'd automate first.</p>
+      <div class="btns">
+        <a class="btn btn-dark" href="#">Book a call <span class="arr">→</span></a>
+      </div>
     </div>
   </div>
 </section>
@@ -516,53 +599,172 @@ header{
           <svg class="ftr-ic" viewBox="0 0 100 100" fill="#000" aria-hidden="true"><use href="#glyph-small"/></svg>
           <span>About us</span>
         </a>
-        <a class="ftr-nav-col" href="#how"><span>Features</span></a>
-        <a class="ftr-nav-col" href="#"><span>Articles</span></a>
-        <a class="ftr-nav-col" href="#book"><span>Contact</span></a>
+        <a class="ftr-nav-col" href="#how">
+          <svg class="ftr-ic" viewBox="0 0 100 100" fill="#000" aria-hidden="true"><use href="#glyph-small"/></svg>
+          <span>Features</span>
+        </a>
+        <a class="ftr-nav-col" href="#">
+          <svg class="ftr-ic" viewBox="0 0 100 100" fill="#000" aria-hidden="true"><use href="#glyph-small"/></svg>
+          <span>Articles</span>
+        </a>
+        <a class="ftr-nav-col" href="#book">
+          <svg class="ftr-ic" viewBox="0 0 100 100" fill="#000" aria-hidden="true"><use href="#glyph-small"/></svg>
+          <span>Contact</span>
+        </a>
       </div>
 
       <div class="ftr-cloud" aria-hidden="true">
-        <div class="ftr-row" style="--shift:-2%">
-          <span class="ftr-pill">AI THAT WORKS WITH PEOPLE</span>
-          <span class="ftr-bar" style="width:12vw"></span>
-          <span class="ftr-dot"></span>
-          <span class="ftr-pill">AI THAT ADAPTS</span>
-          <span class="ftr-dot"></span><span class="ftr-dot"></span>
-          <span class="ftr-bar" style="width:10vw"></span>
-          <span class="ftr-pill">PRACTICAL AI</span>
-          <span class="ftr-bar" style="width:7vw"></span>
+        <div class="ftr-row">
+          <div class="ftr-track">
+            <span class="ftr-pill">AI THAT WORKS WITH PEOPLE</span>
+            <span class="ftr-bar" style="width:12vw"></span>
+            <span class="ftr-dot"></span>
+            <span class="ftr-pill">AI THAT ADAPTS</span>
+            <span class="ftr-dot"></span><span class="ftr-dot"></span>
+            <span class="ftr-bar" style="width:10vw"></span>
+            <span class="ftr-pill">PRACTICAL AI</span>
+            <span class="ftr-bar" style="width:7vw"></span>
+            <span class="ftr-pill">AI THAT WORKS WITH PEOPLE</span>
+            <span class="ftr-bar" style="width:12vw"></span>
+            <span class="ftr-dot"></span>
+            <span class="ftr-pill">AI THAT ADAPTS</span>
+            <span class="ftr-dot"></span><span class="ftr-dot"></span>
+            <span class="ftr-bar" style="width:10vw"></span>
+            <span class="ftr-pill">PRACTICAL AI</span>
+            <span class="ftr-bar" style="width:7vw"></span>
+            <span class="ftr-pill">AI THAT WORKS WITH PEOPLE</span>
+            <span class="ftr-bar" style="width:12vw"></span>
+            <span class="ftr-dot"></span>
+            <span class="ftr-pill">AI THAT ADAPTS</span>
+            <span class="ftr-dot"></span><span class="ftr-dot"></span>
+            <span class="ftr-bar" style="width:10vw"></span>
+            <span class="ftr-pill">PRACTICAL AI</span>
+            <span class="ftr-bar" style="width:7vw"></span>
+            <span class="ftr-pill">AI THAT WORKS WITH PEOPLE</span>
+            <span class="ftr-bar" style="width:12vw"></span>
+            <span class="ftr-dot"></span>
+            <span class="ftr-pill">AI THAT ADAPTS</span>
+            <span class="ftr-dot"></span><span class="ftr-dot"></span>
+            <span class="ftr-bar" style="width:10vw"></span>
+            <span class="ftr-pill">PRACTICAL AI</span>
+            <span class="ftr-bar" style="width:7vw"></span>
+          </div>
         </div>
-        <div class="ftr-row" style="--shift:6%">
-          <span class="ftr-bar" style="width:9vw"></span>
-          <span class="ftr-pill">AUTOMATE THE REPETITIVE</span>
-          <span class="ftr-dot"></span>
-          <span class="ftr-pill">KEEP HUMANS IN CONTROL</span>
-          <span class="ftr-bar" style="width:9vw"></span>
-          <span class="ftr-pill">BUILT FOR REAL WORK</span>
-          <span class="ftr-dot"></span>
-          <span class="ftr-pill">PRACTICAL AI</span>
-          <span class="ftr-bar" style="width:8vw"></span>
+        <div class="ftr-row">
+          <div class="ftr-track rev">
+            <span class="ftr-bar" style="width:9vw"></span>
+            <span class="ftr-pill">AUTOMATE THE REPETITIVE</span>
+            <span class="ftr-dot"></span>
+            <span class="ftr-pill">KEEP HUMANS IN CONTROL</span>
+            <span class="ftr-bar" style="width:9vw"></span>
+            <span class="ftr-pill">BUILT FOR REAL WORK</span>
+            <span class="ftr-dot"></span>
+            <span class="ftr-pill">PRACTICAL AI</span>
+            <span class="ftr-bar" style="width:8vw"></span>
+            <span class="ftr-bar" style="width:9vw"></span>
+            <span class="ftr-pill">AUTOMATE THE REPETITIVE</span>
+            <span class="ftr-dot"></span>
+            <span class="ftr-pill">KEEP HUMANS IN CONTROL</span>
+            <span class="ftr-bar" style="width:9vw"></span>
+            <span class="ftr-pill">BUILT FOR REAL WORK</span>
+            <span class="ftr-dot"></span>
+            <span class="ftr-pill">PRACTICAL AI</span>
+            <span class="ftr-bar" style="width:8vw"></span>
+            <span class="ftr-bar" style="width:9vw"></span>
+            <span class="ftr-pill">AUTOMATE THE REPETITIVE</span>
+            <span class="ftr-dot"></span>
+            <span class="ftr-pill">KEEP HUMANS IN CONTROL</span>
+            <span class="ftr-bar" style="width:9vw"></span>
+            <span class="ftr-pill">BUILT FOR REAL WORK</span>
+            <span class="ftr-dot"></span>
+            <span class="ftr-pill">PRACTICAL AI</span>
+            <span class="ftr-bar" style="width:8vw"></span>
+            <span class="ftr-bar" style="width:9vw"></span>
+            <span class="ftr-pill">AUTOMATE THE REPETITIVE</span>
+            <span class="ftr-dot"></span>
+            <span class="ftr-pill">KEEP HUMANS IN CONTROL</span>
+            <span class="ftr-bar" style="width:9vw"></span>
+            <span class="ftr-pill">BUILT FOR REAL WORK</span>
+            <span class="ftr-dot"></span>
+            <span class="ftr-pill">PRACTICAL AI</span>
+            <span class="ftr-bar" style="width:8vw"></span>
+          </div>
         </div>
-        <div class="ftr-row" style="--shift:-6%">
-          <span class="ftr-dot"></span><span class="ftr-dot"></span>
-          <span class="ftr-pill">DECISIONS OVER BUSYWORK</span>
-          <span class="ftr-bar" style="width:8vw"></span>
-          <span class="ftr-pill">MORE MEANINGFUL WORK</span>
-          <span class="ftr-dot"></span>
-          <span class="ftr-bar" style="width:13vw"></span>
-          <span class="ftr-dot"></span>
-          <span class="ftr-pill">AI THAT WORKS WITH PEOPLE</span>
-          <span class="ftr-bar" style="width:8vw"></span>
+        <div class="ftr-row">
+          <div class="ftr-track">
+            <span class="ftr-dot"></span><span class="ftr-dot"></span>
+            <span class="ftr-pill">DECISIONS OVER BUSYWORK</span>
+            <span class="ftr-bar" style="width:8vw"></span>
+            <span class="ftr-pill">MORE MEANINGFUL WORK</span>
+            <span class="ftr-dot"></span>
+            <span class="ftr-bar" style="width:13vw"></span>
+            <span class="ftr-dot"></span>
+            <span class="ftr-pill">AI THAT WORKS WITH PEOPLE</span>
+            <span class="ftr-bar" style="width:8vw"></span>
+            <span class="ftr-dot"></span><span class="ftr-dot"></span>
+            <span class="ftr-pill">DECISIONS OVER BUSYWORK</span>
+            <span class="ftr-bar" style="width:8vw"></span>
+            <span class="ftr-pill">MORE MEANINGFUL WORK</span>
+            <span class="ftr-dot"></span>
+            <span class="ftr-bar" style="width:13vw"></span>
+            <span class="ftr-dot"></span>
+            <span class="ftr-pill">AI THAT WORKS WITH PEOPLE</span>
+            <span class="ftr-bar" style="width:8vw"></span>
+            <span class="ftr-dot"></span><span class="ftr-dot"></span>
+            <span class="ftr-pill">DECISIONS OVER BUSYWORK</span>
+            <span class="ftr-bar" style="width:8vw"></span>
+            <span class="ftr-pill">MORE MEANINGFUL WORK</span>
+            <span class="ftr-dot"></span>
+            <span class="ftr-bar" style="width:13vw"></span>
+            <span class="ftr-dot"></span>
+            <span class="ftr-pill">AI THAT WORKS WITH PEOPLE</span>
+            <span class="ftr-bar" style="width:8vw"></span>
+            <span class="ftr-dot"></span><span class="ftr-dot"></span>
+            <span class="ftr-pill">DECISIONS OVER BUSYWORK</span>
+            <span class="ftr-bar" style="width:8vw"></span>
+            <span class="ftr-pill">MORE MEANINGFUL WORK</span>
+            <span class="ftr-dot"></span>
+            <span class="ftr-bar" style="width:13vw"></span>
+            <span class="ftr-dot"></span>
+            <span class="ftr-pill">AI THAT WORKS WITH PEOPLE</span>
+            <span class="ftr-bar" style="width:8vw"></span>
+          </div>
         </div>
-        <div class="ftr-row" style="--shift:3%">
-          <span class="ftr-pill">CONNECT YOUR WORKFLOWS</span>
-          <span class="ftr-bar" style="width:12vw"></span>
-          <span class="ftr-pill">HUMAN FIRST</span>
-          <span class="ftr-dot"></span>
-          <span class="ftr-pill">CONNECT YOUR WORKFLOWS</span>
-          <span class="ftr-bar" style="width:9vw"></span>
-          <span class="ftr-pill">SHIP FASTER</span>
-          <span class="ftr-bar" style="width:12vw"></span>
+        <div class="ftr-row">
+          <div class="ftr-track rev">
+            <span class="ftr-pill">CONNECT YOUR WORKFLOWS</span>
+            <span class="ftr-bar" style="width:12vw"></span>
+            <span class="ftr-pill">HUMAN FIRST</span>
+            <span class="ftr-dot"></span>
+            <span class="ftr-pill">CONNECT YOUR WORKFLOWS</span>
+            <span class="ftr-bar" style="width:9vw"></span>
+            <span class="ftr-pill">SHIP FASTER</span>
+            <span class="ftr-bar" style="width:12vw"></span>
+            <span class="ftr-pill">CONNECT YOUR WORKFLOWS</span>
+            <span class="ftr-bar" style="width:12vw"></span>
+            <span class="ftr-pill">HUMAN FIRST</span>
+            <span class="ftr-dot"></span>
+            <span class="ftr-pill">CONNECT YOUR WORKFLOWS</span>
+            <span class="ftr-bar" style="width:9vw"></span>
+            <span class="ftr-pill">SHIP FASTER</span>
+            <span class="ftr-bar" style="width:12vw"></span>
+            <span class="ftr-pill">CONNECT YOUR WORKFLOWS</span>
+            <span class="ftr-bar" style="width:12vw"></span>
+            <span class="ftr-pill">HUMAN FIRST</span>
+            <span class="ftr-dot"></span>
+            <span class="ftr-pill">CONNECT YOUR WORKFLOWS</span>
+            <span class="ftr-bar" style="width:9vw"></span>
+            <span class="ftr-pill">SHIP FASTER</span>
+            <span class="ftr-bar" style="width:12vw"></span>
+            <span class="ftr-pill">CONNECT YOUR WORKFLOWS</span>
+            <span class="ftr-bar" style="width:12vw"></span>
+            <span class="ftr-pill">HUMAN FIRST</span>
+            <span class="ftr-dot"></span>
+            <span class="ftr-pill">CONNECT YOUR WORKFLOWS</span>
+            <span class="ftr-bar" style="width:9vw"></span>
+            <span class="ftr-pill">SHIP FASTER</span>
+            <span class="ftr-bar" style="width:12vw"></span>
+          </div>
         </div>
       </div>
 
@@ -596,6 +798,50 @@ header{
     });
   },{threshold:.12,rootMargin:'0px 0px -6% 0px'});
   els.forEach(function(e){ io.observe(e); });
+})();
+
+(function(){
+  var sections = ['stakes','work','how','end'].map(function(id){ return document.getElementById(id); }).filter(Boolean);
+  var items = document.querySelectorAll('.qn-item');
+  if (!sections.length || !items.length || !('IntersectionObserver' in window)) return;
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if (!en.isIntersecting) return;
+      items.forEach(function(item){
+        item.classList.toggle('active', item.getAttribute('href') === '#' + en.target.id);
+      });
+    });
+  },{threshold:0,rootMargin:'-45% 0px -45% 0px'});
+  sections.forEach(function(s){ io.observe(s); });
+})();
+
+(function(){
+  var testimonials = [
+    {quote:"Marker quietly became the operating layer our business was missing. It connected fragmented knowledge, automated repetitive work, and gave every team a shared understanding of what needed to happen next. It wasn't just greater efficiency — it was a fundamentally better way of working.", name:"Customer name", role:"Role, Company — pending sign-off"},
+    {quote:"We'd tried three different automation vendors before Marker. They were the first team that actually shipped something we used every day within the first month.", name:"VP of Operations", role:"Enterprise Retailer"},
+    {quote:"Our finance team was buried in manual reconciliation. Marker rebuilt the workflow in three weeks — the kind of project that used to take two quarters and a six-figure consulting engagement.", name:"CFO", role:"Industrial Manufacturer"},
+    {quote:"What surprised us wasn't the automation — it was how quickly our own team started building on top of it. Marker didn't just hand us software, they left us capable.", name:"Head of Strategy", role:"Global Logistics Firm"}
+  ];
+  var i = 0;
+  var textEl = document.getElementById('qcText');
+  var nameEl = document.getElementById('qcName');
+  var roleEl = document.getElementById('qcRole');
+  var idxEl = document.getElementById('qcIdx');
+  var btns = document.querySelectorAll('.qc-btn');
+  if (!textEl || !btns.length) return;
+  function render(){
+    var t = testimonials[i];
+    textEl.textContent = '“' + t.quote + '”';
+    nameEl.textContent = t.name;
+    roleEl.textContent = t.role;
+    idxEl.textContent = i + 1;
+  }
+  btns.forEach(function(b){
+    b.addEventListener('click', function(){
+      i = (i + parseInt(b.dataset.dir,10) + testimonials.length) % testimonials.length;
+      render();
+    });
+  });
 })();
 </script>
 
