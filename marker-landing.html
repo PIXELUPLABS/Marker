@@ -221,8 +221,11 @@ header{
 
 /* ============ CTA (bracket plaque, Figma 734:3011 exact export) ============ */
 .cta{background:var(--bg-2);text-align:center}
-.cta-card{position:relative;max-width:840px;margin:0 auto;padding:clamp(3.5rem,9vw,5.5rem) clamp(3.2rem,11vw,7.5rem)}
-.cta-card-bg{position:absolute;inset:0;width:100%;height:100%;z-index:0;filter:drop-shadow(0 20px 40px rgba(0,0,0,.06))}
+.cta-card{
+  position:relative;width:100%;max-width:813px;margin:0 auto;
+  padding:1.5rem 3rem;
+}
+.cta-card-bg{position:absolute;inset:0;width:100%;height:100%;z-index:0}
 .cta-brace{position:absolute;top:50%;transform:translateY(-50%);width:clamp(28px,4.2vw,44px);pointer-events:none;z-index:1}
 .cta-brace.l{left:clamp(-16px,-2.6vw,2px)}
 .cta-brace.r{right:clamp(-16px,-2.6vw,2px);transform:translateY(-50%) scaleX(-1)}
@@ -231,6 +234,9 @@ header{
 .cta-btn{display:inline-block;width:clamp(140px,15vw,180px);transition:transform .18s ease}
 .cta-btn svg{width:100%;height:auto;display:block}
 .cta-btn:hover{transform:translateY(-1px)}
+@media (min-width:640px){
+  .cta-card{aspect-ratio:976/515;display:flex;flex-direction:column;align-items:center;justify-content:center}
+}
 @media (max-width:640px){.cta-brace{display:none}}
 
 /* ============ Footer (Figma 734:2054) ============ */
