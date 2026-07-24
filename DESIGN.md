@@ -305,19 +305,23 @@ Left-aligned quote, decorative gradient-filled node-cluster glyph bleeding off t
 - [ ] Approve the color mapping above, or provide a preferred exact remap.
 - [ ] Confirm whether Lime is reserved for a future 5th rotation slot or general use (tags, data viz).
 - [ ] Confirm gradient stop order for the new palette (testimonial blob, End State glyph).
-- [ ] Once approved: this is a single-file change (the `:root` token block in `marker-landing.html`) — no component restructuring required.
+- [ ] Once approved: this is purely a token swap against the values in this spec — no component restructuring required, regardless of what codebase or tool implements it.
 
-## Appendix: Figma references
+## Appendix: source of truth
+
+This spec is implementation-agnostic — it describes the design system, not any one codebase. For pixel-exact assets (icon paths, logo lockups, the CTA plaque silhouette, button constructions, etc.), pull directly from Figma rather than reverse-engineering an existing build:
 
 - Footer — file `6CzE61LLYx9zlg2uEifiu8`, node `745:597`
 - CTA / bracket plaque — file `6CzE61LLYx9zlg2uEifiu8`, node `734:3011`
 - Stakes glyph-card pattern ("Features" reference) — file `6CzE61LLYx9zlg2uEifiu8`, node `310:54`
 - Explorations board (hero/nav/footer variants) — file `6CzE61LLYx9zlg2uEifiu8`, node `734:3062`
 
+Every icon, glyph, logo lockup, and button referenced by name in this spec exists as a real layer in these Figma files and can be exported (SVG/PNG/PDF) directly from there — treat Figma, not any particular build, as the canonical export source.
+
 ## Appendix: known gaps
 
-This spec covers everything needed to extend *this* page consistently. It does **not** yet cover, and should not be assumed to answer:
+This spec covers the full visual system. It does **not** yet cover, and should not be assumed to answer:
 
-- Photography/illustration direction (the site currently ships zero photos — 100% vector glyph iconography). If new material introduces photography, that treatment needs to be defined separately.
-- Logo clear-space, minimum size, and misuse rules — not yet formalized.
-- Exportable asset files (logo, icon set, favicon) — everything currently lives as inline SVG inside `marker-landing.html`; nothing has been exported as standalone files yet.
+- Photography/illustration direction (the current design ships zero photos — 100% vector glyph iconography). If new material introduces photography, that treatment needs to be defined separately.
+- Logo clear-space, minimum size, and misuse rules — not yet formalized; pull the lockup from Figma and confirm these with the brand owner before reuse.
+- A dedicated icon/asset export pass — nothing has been bulk-exported as a standalone sprite sheet or asset library yet; export on demand from the Figma files above.
