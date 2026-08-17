@@ -113,7 +113,9 @@ absolute bg-[#dde830] rounded-[6px]
 shadow-[inset_0px_0px_4px_0px_rgba(0,0,0,0.1)]
 border border-[#e6e6e6]
 ```
-Place behind multi-word span in headline.
+Place behind multi-word span in headline. Recurs 7× across the page — Hero ("actually shipped"), Problem ("where this is going"), Alternatives ("The usual paths don't ship"), Solution ("understand your company,"), Proof ("What this looks like today"), What We Do ("How Marker works"), CTA ("thirty seconds"). Each instance is scoped to its own headline and positioned independently — don't treat it as one shared component instance.
+
+⚠️ **Multi-line wrap**: when the highlighted phrase wraps across two lines, Figma exports **two** separate Highlighter rects (one per line), not one continuous background. If converting an instance to a native `background-color` on a `<span>`, use `box-decoration-break: clone` to reproduce the two-line look, and only hide that span's own two rects. Never hide `[data-name="Highlighter"]` globally — that removes every highlight on the page, not just the converted one.
 
 ### "How it works" Button
 ```css
@@ -139,6 +141,21 @@ h-[30px] — SVG tab shape filled #ebebeb
 font-['Geist:Medium'] text-[12px] uppercase text-[#ccc]
 small dot icon left
 ```
+
+### Footer / CTA Link Card
+Used for all 6 link cards: Footer row (About us, Features, Articles, Contact) and CTA row (Book a call, founders@onmarker.com).
+
+- **Rest state (all 6, always)**: plain `#f7f7f7`/white background, no gradient, no inset shadow.
+- **Top-right icon (all 6, always visible — not hover-only)**: an 11-dot diagonal-arrow glyph — eleven `<circle r="1.44">` inside a `-rotate-45` wrapper, sized to a `size-[24px]` box. Identical SVG reused across all 6 cards.
+- **Hover state (JS/`:hover`, never baked into rest markup)**:
+  ```css
+  background: linear-gradient(140deg, #f4f4f4 0%, #ebebeb 100%)
+  box-shadow: inset 0 0 12px rgba(0,0,0,0.1), inset 0 4px 8px rgba(0,0,0,0.18)
+  transition: background 0.18s, box-shadow 0.18s
+  ```
+  A "pressed in" look. Apply identically to all 6 cards — none of them should look different from the others at rest.
+
+⚠️ If a card is used in Figma to visually demonstrate the hover state for reference, its default/exported markup must still be reset to the plain rest state before shipping — Figma's own "selected variant" is not automatically the site's default state.
 
 ---
 
@@ -181,6 +198,23 @@ SVG paths: `src/imports/FinalLandingPage/svg-aqkc6nk658.ts`
 
 ---
 
+## Implementation Architecture (current codebase)
+
+The live app is two layers, not one static export — an agent editing only one half will silently break the other:
+
+1. **`src/imports/FinalLandingPage/index.tsx`** — the raw Figma-Make export. Pure presentational JSX, one function per Figma frame/group, matching this spec's static/rest-state visuals exactly.
+2. **`src/LandingPage.tsx`** — a `useEffect`-driven behavior layer that mounts after `<FinalLandingPage />` and walks its rendered DOM (via `querySelector` + text-content matching, not props) to attach: footer/CTA card hover effects, nav button hovers, the Proof section's tab switch, the scroll-reveal letter stagger, and the native-CSS conversion of one Yellow Highlighter instance.
+
+Because layer 2 finds elements by **text content and Tailwind class fragments** rather than refs or IDs, any structural change to a card's markup, a label's exact wording, or a class name in `index.tsx` can silently detach a hover/behavior handler without throwing an error — the page still renders, it just quietly loses the interaction. When changing footer/CTA cards, nav buttons, or the "AI agents that understand your company," headline, re-check `LandingPage.tsx`'s matching selectors in the same change, and verify in a browser (not just a type-check) that hover states and click behavior still fire.
+
+## Deployment Notes
+
+- Hosted on GitHub Pages at `PIXELUPLABS/Marker`, deployed via `.github/workflows/deploy.yml` on every push to `master`. Pages **Settings → Source must be "GitHub Actions"** — if it's ever switched to "Deploy from a branch," GitHub's legacy branch-deploy pipeline races the Actions build and serves the raw, unbuilt `index.html` instead.
+- `vite.config.ts` hard-imports `.figma/make/site.json` (site title/description/robots) at the top of the file — this file must stay committed, or `vite build` fails immediately before touching any application code.
+- The Pages base path is injected via the `GITHUB_PAGES_BASE` env var (set by `actions/configure-pages` in CI) — don't hardcode a `/Marker/` base in `vite.config.ts` directly.
+
+---
+
 ## Recreating from Scratch
 
 1. Wire fonts via `@font-face` in `index.css` (see table above).
@@ -190,3 +224,4 @@ SVG paths: `src/imports/FinalLandingPage/svg-aqkc6nk658.ts`
 5. Import SVG paths from `svg-aqkc6nk658.ts` and image assets as ES module imports.
 6. The yellow highlighter (`#dde830`) is an absolute-positioned `<div>` placed behind key heading words — not inline `<mark>`.
 7. The hero right-side diagram uses absolute positioning at desktop scale; wrap in an `overflow-hidden` container for smaller viewports.
+8. Steps 1–7 only reproduce the static/rest-state visuals. Hover states, the Proof section's tab switch, and scroll-reveal are a separate behavior layer — see **Implementation Architecture** above before assuming the recreation is feature-complete.
