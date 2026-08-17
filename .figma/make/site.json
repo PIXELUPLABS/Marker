@@ -1,0 +1,10 @@
+{
+  "description": "Create visually stunning landing pages effortlessly by converting design files into fully functional web pages, perfect for developers and marketers.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
