@@ -1,10 +1,17 @@
 {
-  "description": "Create visually stunning landing pages effortlessly by converting design files into fully functional web pages, perfect for developers and marketers.",
+  "description": "Marker embeds with your company, ships AI agents in weeks, and doesn't stop until your transformation is complete. Backed by Y Combinator.",
   "robots": {
     "index": false
   },
   "accessibility": {
     "addBypassLinks": false,
     "ignoreReducedMotion": false
+  },
+  "title": "Marker — Your AI transformation, actually shipped",
+  "icons": {
+    "icon": "favicon.svg"
+  },
+  "openGraph": {
+    "image": "https://pixeluplabs.github.io/Marker/og-image.png"
   }
 }

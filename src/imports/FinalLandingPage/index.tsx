@@ -779,6 +779,7 @@ function Frame54() {
         How it works
       </p>
       <div className="absolute inset-0 pointer-events-none rounded-[inherit] shadow-[inset_0px_0px_8px_0px_rgba(0,0,0,0.07),inset_0px_2px_3px_0px_rgba(0,0,0,0.15)]" />
+      <a href="#how-it-works" aria-label="How it works" className="absolute inset-0 z-10 rounded-[inherit] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1a1a1a]" />
     </div>
   );
 }
@@ -816,6 +817,7 @@ function Frame() {
         Book a call
       </p>
       <LucideArrowRight />
+      <a href="https://info.onmarker.com/book-a-call" aria-label="Book a call" className="absolute inset-0 z-10 rounded-[inherit] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1a1a1a]" />
     </div>
   );
 }
@@ -1013,7 +1015,7 @@ function Component1stRow() {
 
 function Component4() {
   return (
-    <div className="bg-black content-stretch flex flex-col gap-[56px] items-center justify-center overflow-clip p-[80px] relative shrink-0 w-[1440px]" data-name="1457">
+    <div className="bg-black content-stretch flex flex-col gap-[56px] items-center justify-center overflow-clip p-[80px] relative shrink-0 w-[1440px]" data-name="1457" id="the-problem">
       <Frame84 />
       <Component1stRow />
     </div>
@@ -2306,7 +2308,7 @@ function Group30() {
         <span className="leading-[1.4] text-[18px]">
           <br aria-hidden />
         </span>
-        <span className="leading-[1.4] text-[#666] text-[18px]">{`We keep going until you're running an AI-native organization.n.`}</span>
+        <span className="leading-[1.4] text-[#666] text-[18px]">{`We keep going until you're running an AI-native organization.`}</span>
       </p>
     </div>
   );
@@ -2322,7 +2324,7 @@ function Frame142() {
 
 function Component3() {
   return (
-    <div className="bg-black content-stretch flex flex-col gap-[24px] items-start overflow-clip p-[80px] relative shrink-0 w-[1440px]" data-name="9">
+    <div className="bg-black content-stretch flex flex-col gap-[24px] items-start overflow-clip p-[80px] relative shrink-0 w-[1440px]" data-name="9" id="the-solution">
       <Frame86 />
       <Frame142 />
     </div>
@@ -2598,6 +2600,7 @@ function Frame1() {
         Book a call
       </p>
       <LucideArrowRight1 />
+      <a href="https://info.onmarker.com/book-a-call" aria-label="Book a call" className="absolute inset-0 z-10 rounded-[inherit] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1a1a1a]" />
     </div>
   );
 }
@@ -2624,7 +2627,7 @@ function Frame130() {
 
 function Component6Proof() {
   return (
-    <div className="bg-[#f6f6f6] content-stretch flex flex-col gap-[52px] items-end justify-center overflow-clip p-[80px] relative shrink-0 w-[1440px]" data-name="6 - Proof">
+    <div className="bg-[#f6f6f6] content-stretch flex flex-col gap-[52px] items-end justify-center overflow-clip p-[80px] relative shrink-0 w-[1440px]" data-name="6 - Proof" id="the-proof">
       <Frame105 />
       <Frame130 />
     </div>
@@ -3594,7 +3597,7 @@ function Frame46() {
 
 function Component5WhatWeDo() {
   return (
-    <div className="bg-[#f6f6f6] content-stretch flex flex-col gap-[56px] items-start overflow-clip p-[80px] relative shrink-0 w-[1440px]" data-name="5 - What we do">
+    <div className="bg-[#f6f6f6] content-stretch flex flex-col gap-[56px] items-start overflow-clip p-[80px] relative shrink-0 w-[1440px]" data-name="5 - What we do" id="how-it-works">
       <Frame20 />
       <Frame46 />
     </div>
@@ -3807,7 +3810,7 @@ function Frame150() {
 
 function Component5() {
   return (
-    <div className="bg-black content-stretch flex items-start justify-between overflow-clip p-[80px] relative shrink-0 w-[1440px]" data-name="1462">
+    <div className="bg-black content-stretch flex items-start justify-between overflow-clip p-[80px] relative shrink-0 w-[1440px]" data-name="1462" id="who-we-are">
       <Frame148 />
       <Frame150 />
     </div>
@@ -4017,6 +4020,7 @@ function Frame90() {
     <div className="content-stretch flex flex-[1_0_0] flex-col h-full items-end justify-between min-w-px overflow-clip pl-[20px] pr-[10px] py-[24px] relative">
       <Frame43 />
       <Frame92 />
+      <a href="https://info.onmarker.com/book-a-call" aria-label="Book a call" className="absolute inset-0 z-10 rounded-[inherit] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1a1a1a]" />
     </div>
   );
 }
@@ -4068,6 +4072,7 @@ function Frame91() {
     <div className="content-stretch flex flex-[1_0_0] flex-col h-full items-end justify-between min-w-px overflow-clip p-[24px] relative">
       <Frame44 />
       <Frame93 />
+      <a href="mailto:founders@onmarker.com" aria-label="Email founders@onmarker.com" className="absolute inset-0 z-10 rounded-[inherit] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1a1a1a]" />
     </div>
   );
 }
@@ -4156,6 +4161,7 @@ function Frame27() {
         <div className="content-stretch flex flex-col items-start justify-between pl-[20px] pr-[10px] py-[24px] relative size-full">
           <Frame29 />
           <p className="[word-break:break-word] font-['Inter:Medium',sans-serif] font-medium leading-none not-italic relative shrink-0 text-[18px] text-black tracking-[-0.36px] whitespace-nowrap">About us</p>
+          <a href="#who-we-are" aria-label="About us" className="absolute inset-0 z-10 rounded-[inherit] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1a1a1a]" />
         </div>
       </div>
     </div>
@@ -4205,6 +4211,7 @@ function Frame30() {
         <div className="content-stretch flex flex-col items-start justify-between pl-[20px] pr-[10px] py-[24px] relative size-full">
           <Frame31 />
           <p className="[word-break:break-word] font-['Inter:Medium',sans-serif] font-medium leading-none not-italic opacity-60 relative shrink-0 text-[18px] text-black tracking-[-0.36px] whitespace-nowrap">Features</p>
+          <a href="#how-it-works" aria-label="Features" className="absolute inset-0 z-10 rounded-[inherit] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1a1a1a]" />
         </div>
       </div>
       <div aria-hidden className="absolute border-[#d9d9d9] border-l border-solid inset-0 pointer-events-none" />
@@ -4305,6 +4312,7 @@ function Frame34() {
         <div className="content-stretch flex flex-col items-start justify-between pl-[20px] pr-[10px] py-[24px] relative size-full">
           <Frame35 />
           <p className="[word-break:break-word] font-['Inter:Medium',sans-serif] font-medium leading-none not-italic opacity-60 relative shrink-0 text-[18px] text-black tracking-[-0.36px] whitespace-nowrap">Contact</p>
+          <a href="https://info.onmarker.com/book-a-call" aria-label="Contact" className="absolute inset-0 z-10 rounded-[inherit] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1a1a1a]" />
         </div>
       </div>
       <div aria-hidden className="absolute border-[#d9d9d9] border-l border-solid inset-0 pointer-events-none" />
@@ -4356,12 +4364,12 @@ function Frame36() {
 function Frame82() {
   return (
     <div className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal gap-x-[12px] gap-y-[32px] grid grid-cols-[repeat(3,minmax(0,1fr))] grid-rows-[repeat(2,fit-content(100%))] leading-none not-italic relative shrink-0 text-[14px] text-[rgba(0,0,0,0.7)] tracking-[-0.28px] w-full">
-      <p className="col-1 justify-self-stretch opacity-60 relative row-1 self-stretch shrink-0">Book a call</p>
-      <p className="col-2 justify-self-stretch opacity-60 relative row-1 self-stretch shrink-0">Privacy Policy</p>
-      <p className="col-3 justify-self-stretch opacity-60 relative row-1 self-stretch shrink-0">Cookie Policy</p>
-      <p className="col-1 justify-self-stretch opacity-60 relative row-2 self-stretch shrink-0">Terms of Service</p>
-      <p className="col-2 justify-self-stretch opacity-60 relative row-2 self-stretch shrink-0">Trust Center</p>
-      <p className="col-3 justify-self-stretch opacity-60 relative row-2 self-stretch shrink-0">Manage Cookies</p>
+      <p className="col-1 justify-self-stretch opacity-60 relative row-1 self-stretch shrink-0"><a href="https://info.onmarker.com/book-a-call" className="hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1a1a1a]">Book a call</a></p>
+      <p className="col-2 justify-self-stretch opacity-60 relative row-1 self-stretch shrink-0"><a href="https://onmarker.com/privacy" className="hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1a1a1a]">Privacy Policy</a></p>
+      <p className="col-3 justify-self-stretch opacity-60 relative row-1 self-stretch shrink-0"><a href="https://onmarker.com/cookies" className="hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1a1a1a]">Cookie Policy</a></p>
+      <p className="col-1 justify-self-stretch opacity-60 relative row-2 self-stretch shrink-0"><a href="https://onmarker.com/terms" className="hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1a1a1a]">Terms of Service</a></p>
+      <p className="col-2 justify-self-stretch opacity-60 relative row-2 self-stretch shrink-0"><a href="https://trust.onmarker.com/" className="hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1a1a1a]">Trust Center</a></p>
+      <p className="col-3 justify-self-stretch opacity-60 relative row-2 self-stretch shrink-0"><a href="https://onmarker.com/cookies" className="hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1a1a1a]">Manage Cookies</a></p>
     </div>
   );
 }

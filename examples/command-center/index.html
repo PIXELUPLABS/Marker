@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Overview — Marker Command Center (sample)</title>
+<link rel="icon" href="../../assets/favicon/favicon.svg">
+<style>
+  @font-face { font-family: 'Stack Sans Headline'; src: url('../../assets/fonts/stack-sans-headline-variable-latin.woff2') format('woff2'); font-weight: 200 700; font-display: swap; }
+  @font-face { font-family: 'Inter'; src: url('../../assets/fonts/inter-variable-latin.woff2') format('woff2'); font-weight: 100 900; font-display: swap; }
+  @font-face { font-family: 'Geist'; src: url('../../assets/fonts/geist-variable-latin.woff2') format('woff2'); font-weight: 100 900; font-display: swap; }
+  @font-face { font-family: 'Geist Mono'; src: url('../../assets/fonts/geist-mono-variable-latin.woff2') format('woff2'); font-weight: 100 900; font-display: swap; }
+</style>
+<link rel="stylesheet" href="../../tokens/tokens.css">
+<link rel="stylesheet" href="../../ui/marker-ui.css">
+<style>
+  body { margin: 0; background: var(--ui-bg-shell); }
+  /* Screen-specific layout only; all components come from ui/marker-ui.css */
+  .cc-search { width: min(420px, 100%); }
+  .cc-attention { list-style: none; margin: 0; padding: var(--space-2) var(--space-4); display: grid; }
+  .cc-attention li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 12px; padding: var(--space-3) 0; border-top: 1px solid var(--ui-border-default); }
+  .cc-attention li:first-child { border-top: 0; }
+  .cc-attention p { margin: 0; }
+  .cc-outcome { display: grid; gap: var(--space-3); }
+  .cc-outcome__row { display: grid; grid-template-columns: 150px minmax(0, 1fr) 64px; gap: var(--space-3); align-items: center; }
+  .cc-stack { display: flex; height: 12px; gap: 2px; }
+  .cc-stack span { display: block; height: 100%; }
+  .cc-stack span:first-child { border-radius: 4px 0 0 4px; }
+  .cc-stack span:last-child { border-radius: 0 4px 4px 0; }
+  @media (max-width: 1023px) {
+    .cc-outcome__row { grid-template-columns: 110px minmax(0, 1fr) 56px; }
+  }
+  @media (max-width: 767px) { .cc-hide-sm { display: none; } }
+</style>
+</head>
+<body class="mk-app">
+<a class="mk-visually-hidden" href="#main">Skip to content</a>
+<div class="mk-shell" id="shell">
+  <aside class="mk-sidebar" aria-label="Main navigation">
+    <a class="mk-sidebar__brand" href="#"><img class="mk-sidebar__logo-full" src="../../assets/logo/svg/logo-full-white.svg" alt="Marker Command Center"><img class="mk-sidebar__logo-mark" src="../../assets/logo/svg/logomark-white.svg" alt="Marker Command Center"></a>
+    <nav aria-label="Primary">
+      <div class="mk-nav">
+        <a class="mk-nav__item" href="#" aria-current="page"><span data-icon="layout-dashboard" data-size="20"></span><span>Overview</span></a>
+        <a class="mk-nav__item" href="#"><span data-icon="bot" data-size="20"></span><span>Agents</span></a>
+        <a class="mk-nav__item" href="#"><span data-icon="history" data-size="20"></span><span>Runs</span></a>
+        <a class="mk-nav__item" href="#"><span data-icon="inbox" data-size="20"></span><span>Escalations</span><span class="mk-badge mk-badge--warning">3</span></a>
+        <a class="mk-nav__item" href="#"><span data-icon="lightbulb" data-size="20"></span><span>Opportunities</span></a>
+      </div>
+    </nav>
+    <nav aria-label="Workspace">
+      <div class="mk-nav">
+        <span class="mk-nav__label">Workspace</span>
+        <a class="mk-nav__item" href="#"><span data-icon="database" data-size="20"></span><span>Data sources</span></a>
+        <a class="mk-nav__item" href="#"><span data-icon="settings" data-size="20"></span><span>Settings</span></a>
+        <a class="mk-nav__item" href="#"><span data-icon="circle-help" data-size="20"></span><span>Help</span></a>
+      </div>
+    </nav>
+    <div class="mk-sidebar__footer mk-row"><span class="mk-avatar" aria-hidden="true">DP</span><span class="type-ui-small"><span class="type-ui-body-strong" style="display:block">David P.</span><span class="mk-subtle">Prop-tech workspace</span></span></div>
+  </aside>
+  <div class="mk-scrim" id="scrim"></div>
+
+  <header class="mk-topbar">
+    <button class="mk-btn mk-btn--ghost mk-btn--icon mk-topbar__menu" type="button" aria-label="Open navigation" aria-controls="shell" aria-expanded="false" id="menu-btn"><span data-icon="menu" data-size="20"></span></button>
+    <div class="mk-search cc-search" role="search">
+      <span data-icon="search"></span>
+      <input class="mk-input" type="search" aria-label="Search agents and runs" placeholder="Search agents and runs" id="search">
+      <kbd class="mk-kbd cc-hide-sm">/</kbd>
+    </div>
+    <span class="mk-topbar__spacer"></span>
+    <button class="mk-btn mk-btn--ghost mk-btn--icon" type="button" aria-label="Switch to dark theme" id="theme-btn"><span data-icon="moon" data-size="20"></span></button>
+    <button class="mk-btn mk-btn--ghost mk-btn--icon" type="button" aria-label="Notifications (3 new)"><span data-icon="bell" data-size="20"></span></button>
+  </header>
+
+  <main class="mk-main" id="main">
+    <div class="mk-page">
+      <div class="mk-page-header">
+        <div class="mk-stack" style="gap:10px">
+          <span class="mk-eyebrow">Prop-tech workspace · November 2026</span>
+          <h1 class="mk-page-header__title type-ui-title">Overview</h1>
+          <p class="mk-page-header__meta" style="margin:0">6 agents across 2 teams <span class="mk-badge mk-badge--plain" style="margin-left:6px">Sample data</span></p>
+        </div>
+        <div class="mk-page-header__actions">
+          <div class="mk-segmented" role="group" aria-label="Date range"><button type="button" aria-pressed="false">7d</button><button type="button" aria-pressed="true">30d</button><button type="button" aria-pressed="false">90d</button></div>
+          <button class="mk-btn mk-btn--secondary" type="button"><span data-icon="download"></span>Export</button>
+          <button class="mk-btn mk-btn--accent" type="button"><span data-icon="play"></span>Run agent</button>
+        </div>
+      </div>
+
+      <section class="mk-summary" aria-label="This month">
+        <p class="mk-summary__lead"><mark>412 hours</mark> of manual work handed back this month. <span class="mk-muted">About two and a half people's time.</span></p>
+        <div class="mk-stats">
+          <div class="mk-stat"><span class="mk-stat__value">80%</span><span class="mk-stat__label">of product-ops manual work automated</span><span class="mk-stat__note mk-stat__note--good">Up 6 pts on October</span></div>
+          <div class="mk-stat"><span class="mk-stat__value">97.4%</span><span class="mk-stat__label">of runs succeeded</span><span class="mk-stat__note mk-stat__note--bad">Down 0.8 pts on October</span></div>
+          <div class="mk-stat"><span class="mk-stat__value">38</span><span class="mk-stat__label">runs today</span><span class="mk-stat__note">2 running now</span></div>
+          <div class="mk-stat"><span class="mk-stat__value">6</span><span class="mk-stat__label">active agents</span><span class="mk-stat__note">1 paused for review</span></div>
+        </div>
+      </section>
+
+      <div class="mk-grid mk-grid--main-side">
+        <section class="mk-section" aria-labelledby="chart-t">
+          <div class="mk-section__head">
+            <div><h2 id="chart-t" class="type-ui-heading">Hours handed back, by week</h2><p class="type-ui-caption mk-subtle" style="margin:2px 0 0">All agents · last 12 weeks · this week in Persimmon</p></div>
+            <button class="mk-btn mk-btn--ghost mk-btn--sm" type="button" id="table-toggle" aria-pressed="false" aria-controls="chart-table"><span data-icon="list-checks"></span><span>View as table</span></button>
+          </div>
+          <div class="mk-chart" id="chart"></div>
+          <div class="mk-table-wrap" id="chart-table" hidden></div>
+        </section>
+
+        <section class="mk-panel--pressed" aria-labelledby="attention">
+          <div class="mk-section__head" style="padding:var(--space-4) var(--space-4) 0"><h2 id="attention" class="type-ui-subheading">Needs a person</h2><span class="mk-badge mk-badge--warning">3 open</span></div>
+          <ul class="cc-attention">
+            <li><p class="type-ui-body-strong">Invoice total doesn't match the PO</p><span class="mk-badge mk-badge--warning">Needs review</span><p class="type-ui-small mk-muted">Onboarding agent · off by $1,240 · 12&nbsp;min&nbsp;ago</p></li>
+            <li><p class="type-ui-body-strong">Lease renewal date missing</p><span class="mk-badge mk-badge--warning">Needs review</span><p class="type-ui-small mk-muted">Lease compliance agent · Unit 4B · 1&nbsp;h&nbsp;ago</p></li>
+            <li><p class="type-ui-body-strong">Couldn't reach Salesforce</p><span class="mk-badge mk-badge--danger">Failed</span><p class="type-ui-small mk-muted">Product ops agent · retrying at 15:00</p></li>
+          </ul>
+          <div style="padding:0 var(--space-4) var(--space-4)"><a href="#" class="type-ui-small">Open escalations</a></div>
+        </section>
+      </div>
+
+      <div class="mk-grid mk-grid--side-main">
+        <section class="mk-section" aria-labelledby="today-t">
+          <div class="mk-section__head"><h2 id="today-t" class="type-ui-heading">Today</h2><span class="type-ui-caption mk-subtle">5 Nov</span></div>
+          <ol class="mk-timeline">
+            <li class="mk-timeline__item"><span class="mk-timeline__time">14:32</span><div class="mk-timeline__body"><p class="mk-timeline__title">Lease compliance agent checked 48 leases</p><p class="mk-timeline__meta">1.8 h handed back · no escalations</p></div></li>
+            <li class="mk-timeline__item"><span class="mk-timeline__time">14:20</span><div class="mk-timeline__body"><p class="mk-timeline__title">Onboarding agent escalated an invoice</p><p class="mk-timeline__meta">Waiting for Richard</p></div></li>
+            <li class="mk-timeline__item mk-timeline__item--muted"><span class="mk-timeline__time">14:05</span><div class="mk-timeline__body"><p class="mk-timeline__title">Product ops agent lost its Salesforce connection</p><p class="mk-timeline__meta">Retrying at 15:00</p></div></li>
+            <li class="mk-timeline__item"><span class="mk-timeline__time">13:48</span><div class="mk-timeline__body"><p class="mk-timeline__title">Assortment &amp; buying agent priced 212 SKUs</p><p class="mk-timeline__meta">3.2 h handed back</p></div></li>
+          </ol>
+        </section>
+
+        <section class="mk-section" aria-labelledby="outcome-t">
+          <div class="mk-section__head">
+            <h2 id="outcome-t" class="type-ui-heading">How each agent's runs ended</h2>
+            <ul class="mk-legend" aria-label="Outcome legend">
+              <li style="--series:var(--ui-status-success-solid)">Succeeded</li>
+              <li class="mk-texture-a" style="--series:var(--ui-status-warning-solid)">Needs review</li>
+              <li class="mk-texture-b" style="--series:var(--ui-status-danger-solid)">Failed</li>
+            </ul>
+          </div>
+          <div class="cc-outcome" id="outcomes"></div>
+        </section>
+      </div>
+
+      <section aria-labelledby="runs-t" class="mk-section">
+        <div class="mk-section__head">
+          <h2 id="runs-t" class="type-ui-heading">Recent runs</h2>
+          <a href="#" class="type-ui-small">All runs</a>
+        </div>
+        <div class="mk-table-wrap">
+          <table class="mk-table" aria-labelledby="runs-t">
+            <thead><tr><th scope="col">Agent</th><th scope="col">Status</th><th scope="col" class="cc-hide-sm">Run ID</th><th scope="col" class="cc-hide-sm">Started</th><th scope="col" class="mk-num" aria-sort="descending"><button type="button">Duration <span data-icon="chevron-down" data-size="12"></span></button></th><th scope="col" class="mk-num">Hours back</th><th scope="col"><span class="mk-visually-hidden">Actions</span></th></tr></thead>
+            <tbody id="runs"></tbody>
+          </table>
+          <div class="mk-pagination"><span>1–6 of 214 runs</span><div class="mk-row"><button class="mk-btn mk-btn--secondary mk-btn--sm" type="button" disabled>Previous</button><button class="mk-btn mk-btn--secondary mk-btn--sm" type="button">Next</button></div></div>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+<div class="mk-tooltip" id="tip" role="tooltip" hidden></div>
+
+<script src="../../ui/icons.js"></script>
+<script>
+(function () {
+  /* Sample data: illustrative only, not client results. */
+  var weeks = ['Aug 18','Aug 25','Sep 1','Sep 8','Sep 15','Sep 22','Sep 29','Oct 6','Oct 13','Oct 20','Oct 27','Nov 3'];
+  var hours = [42, 48, 51, 63, 70, 74, 81, 88, 94, 97, 103, 112];
+  var outcomes = [['Lease compliance', 182, 6, 2], ['Onboarding', 96, 11, 1], ['Product ops', 140, 2, 5], ['Assortment & buying', 24, 1, 0]];
+  var runs = [
+    ['Lease compliance agent', 'success', 'Succeeded', 'run_7f3a92c', '14:32', '2m 14s', '1.8'],
+    ['Onboarding agent', 'warning', 'Needs review', 'run_7f3a8e1', '14:20', '5m 02s', '—'],
+    ['Product ops agent', 'danger', 'Failed', 'run_7f3a7b0', '14:05', '0m 41s', '—'],
+    ['Lease compliance agent', 'info', 'Running', 'run_7f3a77d', '14:01', '—', '—'],
+    ['Assortment & buying agent', 'success', 'Succeeded', 'run_7f3a6c4', '13:48', '7m 55s', '3.2'],
+    ['Onboarding agent', 'success', 'Succeeded', 'run_7f3a5a9', '13:30', '4m 10s', '2.4']
+  ];
+
+  /* Bar chart: grey history, the current week in Persimmon with its value. 4px rounded data ends, recessive grid. */
+  var W = 640, H = 240, pad = { l: 36, r: 8, t: 18, b: 28 }, max = 120;
+  var iw = W - pad.l - pad.r, ih = H - pad.t - pad.b, step = iw / hours.length, bw = step - 8;
+  var svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" role="group" aria-label="Hours handed back per week, last 12 weeks. Rising from 42 to 112 hours this week.">';
+  [0, 30, 60, 90, 120].forEach(function (v) {
+    var y = pad.t + ih - (v / max) * ih;
+    svg += '<line class="mk-grid-line" x1="' + pad.l + '" x2="' + (W - pad.r) + '" y1="' + y + '" y2="' + y + '"/>';
+    svg += '<text class="mk-axis-label" x="' + (pad.l - 8) + '" y="' + (y + 4) + '" text-anchor="end">' + v + '</text>';
+  });
+  hours.forEach(function (v, i) {
+    var h = (v / max) * ih, x = pad.l + i * step + 4, y = pad.t + ih - h, r = Math.min(4, h), last = i === hours.length - 1;
+    var d = 'M' + x + ',' + (pad.t + ih) + 'V' + (y + r) + 'Q' + x + ',' + y + ' ' + (x + r) + ',' + y + 'H' + (x + bw - r) + 'Q' + (x + bw) + ',' + y + ' ' + (x + bw) + ',' + (y + r) + 'V' + (pad.t + ih) + 'Z';
+    svg += '<path class="mk-bar' + (last ? ' mk-bar--emphasis' : '') + '" d="' + d + '" tabindex="0" role="img" aria-label="Week of ' + weeks[i] + ': ' + v + ' hours" data-tip="Week of ' + weeks[i] + '|' + v + ' hours"/>';
+    if (i % 2 === 1 || last) svg += '<text class="mk-axis-label" x="' + (x + bw / 2) + '" y="' + (H - 8) + '" text-anchor="middle">' + weeks[i] + '</text>';
+  });
+  var lx = pad.l + (hours.length - 1) * step + 4 + bw / 2, ly = pad.t + ih - (hours[hours.length - 1] / max) * ih - 7;
+  svg += '<text class="mk-value-label" x="' + lx + '" y="' + ly + '" text-anchor="middle">' + hours[hours.length - 1] + ' h</text></svg>';
+  var chart = document.getElementById('chart'); chart.innerHTML = svg;
+  var tip = document.getElementById('tip');
+  function show(e) {
+    var el = e.target, parts = (el.dataset.tip || '').split('|'); if (!parts[0]) return;
+    tip.textContent = ''; tip.append(parts[0], document.createElement('br'));
+    var b = document.createElement('strong'); b.textContent = parts[1]; tip.append(b); tip.hidden = false;
+    var r = el.getBoundingClientRect();
+    tip.style.left = (r.left + r.width / 2 + window.scrollX - tip.offsetWidth / 2) + 'px';
+    tip.style.top = (r.top + window.scrollY - tip.offsetHeight - 8) + 'px';
+  }
+  function hide() { tip.hidden = true; }
+  chart.querySelectorAll('.mk-bar').forEach(function (b) {
+    b.addEventListener('mouseenter', show); b.addEventListener('focus', show);
+    b.addEventListener('mouseleave', hide); b.addEventListener('blur', hide);
+  });
+  document.getElementById('chart-table').innerHTML = '<table class="mk-table mk-table--compact" aria-label="Hours handed back per week"><thead><tr><th scope="col">Week of</th><th scope="col" class="mk-num">Hours</th></tr></thead><tbody>' +
+    hours.map(function (v, i) { return '<tr><td>' + weeks[i] + '</td><td class="mk-num">' + v + '</td></tr>'; }).join('') + '</tbody></table>';
+  document.getElementById('table-toggle').addEventListener('click', function () {
+    var on = this.getAttribute('aria-pressed') !== 'true';
+    this.setAttribute('aria-pressed', String(on));
+    this.lastElementChild.textContent = on ? 'View as chart' : 'View as table';
+    chart.hidden = on; document.getElementById('chart-table').hidden = !on;
+  });
+
+  /* Outcomes: these series mean good/bad, so they use status colours, with a legend and totals in text. */
+  document.getElementById('outcomes').innerHTML = outcomes.map(function (o) {
+    var total = o[1] + o[2] + o[3];
+    var tex = { success: '', warning: ' class="mk-textured mk-texture-a"', danger: ' class="mk-textured mk-texture-b"' };
+    var seg = function (n, v) { return n ? '<span' + tex[v] + ' style="width:' + (n / total * 100) + '%;background-color:var(--ui-status-' + v + '-solid)"></span>' : ''; };
+    return '<div class="cc-outcome__row"><span class="type-ui-small">' + o[0] + '</span>' +
+      '<div class="cc-stack" role="img" aria-label="' + o[0] + ': ' + o[1] + ' succeeded, ' + o[2] + ' need review, ' + o[3] + ' failed">' + seg(o[1], 'success') + seg(o[2], 'warning') + seg(o[3], 'danger') + '</div>' +
+      '<span class="type-ui-small mk-num mk-muted" style="text-align:right">' + total + ' runs</span></div>';
+  }).join('');
+
+  document.getElementById('runs').innerHTML = runs.map(function (r) {
+    var badge = '<span class="mk-badge mk-badge--' + r[1] + (r[2] === 'Running' ? ' mk-badge--running' : '') + '">' + r[2] + '</span>';
+    return '<tr><td><span class="mk-table__primary">' + r[0] + '</span></td><td>' + badge + '</td><td class="mk-mono cc-hide-sm">' + r[3] + '</td><td class="cc-hide-sm mk-muted">Today ' + r[4] + '</td><td class="mk-num">' + r[5] + '</td><td class="mk-num">' + r[6] + '</td>' +
+      '<td><button class="mk-btn mk-btn--ghost mk-btn--icon mk-btn--sm" type="button" aria-label="Actions for ' + r[3] + '"><span data-icon="ellipsis"></span></button></td></tr>';
+  }).join('');
+  window.MarkerIcons.render(document.getElementById('runs'));
+
+  /* Theme, navigation drawer, search shortcut, segmented control */
+  var root = document.documentElement, themeBtn = document.getElementById('theme-btn');
+  function applyTheme(t) {
+    root.setAttribute('data-theme', t);
+    var dark = t === 'dark';
+    themeBtn.setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme');
+    themeBtn.innerHTML = '<span data-icon="' + (dark ? 'sun' : 'moon') + '" data-size="20"></span>'; window.MarkerIcons.render(themeBtn);
+    try { localStorage.setItem('mk-theme', t); } catch (e) {}
+  }
+  var saved = 'light'; try { saved = localStorage.getItem('mk-theme') || 'light'; } catch (e) {}
+  var q = new URLSearchParams(location.search).get('theme'); if (q === 'light' || q === 'dark' || q === 'system') saved = q;
+  if (saved === 'system') saved = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  applyTheme(saved);
+  themeBtn.addEventListener('click', function () { applyTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'); });
+  var shell = document.getElementById('shell'), menuBtn = document.getElementById('menu-btn');
+  function nav(open) {
+    var wasOpen = shell.getAttribute('data-nav-open') === 'true';
+    shell.setAttribute('data-nav-open', String(open)); menuBtn.setAttribute('aria-expanded', String(open));
+    if (open) { var first = shell.querySelector('.mk-sidebar a'); if (first) setTimeout(function () { first.focus(); }, 50); }
+    else if (wasOpen) menuBtn.focus();
+  }
+  menuBtn.addEventListener('click', function () { nav(shell.getAttribute('data-nav-open') !== 'true'); });
+  document.getElementById('scrim').addEventListener('click', function () { nav(false); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') nav(false);
+    if (e.key === '/' && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') { e.preventDefault(); document.getElementById('search').focus(); }
+  });
+  document.querySelectorAll('.mk-segmented').forEach(function (g) {
+    g.querySelectorAll('button').forEach(function (b) { b.addEventListener('click', function () { g.querySelectorAll('button').forEach(function (x) { x.setAttribute('aria-pressed', 'false'); }); b.setAttribute('aria-pressed', 'true'); }); });
+  });
+})();
+</script>
+</body>
+</html>

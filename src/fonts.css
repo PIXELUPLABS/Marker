@@ -1,0 +1,64 @@
+/*
+ * Marker — self-hosted brand fonts (latin subset, variable woff2)
+ * All four families are SIL Open Font License 1.1 (free to self-host and redistribute).
+ * Source: Google Fonts. Copy the .woff2 files to /public/fonts/ and import this file
+ * from src/index.css (after `@import 'tailwindcss';`).
+ *
+ * Two kinds of @font-face are declared:
+ *   1. Canonical families  ("Stack Sans Headline", "Inter", "Geist", "Archivo")
+ *      — use these in all new code.
+ *   2. Figma-export aliases ("Stack Sans Headline:Regular", "Inter:Medium", …)
+ *      — Figma Make writes classes like font-['Stack_Sans_Headline:Regular',sans-serif],
+ *        which resolve to a family literally named "Stack Sans Headline:Regular".
+ *        Without these aliases nothing matches and the whole page falls back to
+ *        the system sans-serif (this is the bug on the live site as of Nov 2026).
+ *        Each alias pins its weight so the right instance renders even if the
+ *        element has no font-weight class.
+ */
+
+/* ---------- 1. Canonical families ---------- */
+@font-face {
+  font-family: 'Stack Sans Headline';
+  src: url('/fonts/stack-sans-headline-variable-latin.woff2') format('woff2');
+  font-weight: 200 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/inter-variable-latin.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Geist';
+  src: url('/fonts/geist-variable-latin.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+/* Archivo: legacy — used by the current build only. Not part of Brand Guidelines v1.0.
+   Remove this block once Archivo usages are migrated (see DESIGN.md › Typography). */
+@font-face {
+  font-family: 'Archivo';
+  src: url('/fonts/archivo-variable-latin.woff2') format('woff2');
+  font-weight: 100 900;
+  font-stretch: 62% 125%;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ---------- 2. Figma Make export aliases ---------- */
+@font-face { font-family: 'Stack Sans Headline:Light';   src: url('/fonts/stack-sans-headline-variable-latin.woff2') format('woff2'); font-weight: 300; font-display: swap; }
+@font-face { font-family: 'Stack Sans Headline:Regular'; src: url('/fonts/stack-sans-headline-variable-latin.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Stack Sans Headline:Medium';  src: url('/fonts/stack-sans-headline-variable-latin.woff2') format('woff2'); font-weight: 500; font-display: swap; }
+@font-face { font-family: 'Inter:Regular';               src: url('/fonts/inter-variable-latin.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Inter:Medium';                src: url('/fonts/inter-variable-latin.woff2') format('woff2'); font-weight: 500; font-display: swap; }
+@font-face { font-family: 'Inter:Semi Bold';             src: url('/fonts/inter-variable-latin.woff2') format('woff2'); font-weight: 600; font-display: swap; }
+@font-face { font-family: 'Inter Display:Regular';       src: url('/fonts/inter-variable-latin.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Geist:Regular';               src: url('/fonts/geist-variable-latin.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Geist:Medium';                src: url('/fonts/geist-variable-latin.woff2') format('woff2'); font-weight: 500; font-display: swap; }
+@font-face { font-family: 'Archivo:Regular';             src: url('/fonts/archivo-variable-latin.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Archivo:Medium';              src: url('/fonts/archivo-variable-latin.woff2') format('woff2'); font-weight: 500; font-display: swap; }
+@font-face { font-family: 'Archivo:SemiBold';            src: url('/fonts/archivo-variable-latin.woff2') format('woff2'); font-weight: 600; font-display: swap; }
