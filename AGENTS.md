@@ -39,3 +39,11 @@ This project uses **Tailwind CSS v4** through the `@tailwindcss/vite` plugin con
 - Use double quotes for strings containing apostrophes (`"We're here to help"`), or escape them in single-quoted strings. An unescaped apostrophe in a single-quoted string breaks the build.
 - Ensure JSX tags are closed and braces are balanced.
 - Export components as default exports.
+
+## Marker design system (read before any UI or copy change)
+
+- Follow `design.md` (visual system, components, accessibility checklist) and `BRAND.md` (voice, logo, approved facts, URLs). Values live in `tokens/tokens.json`.
+- Use only the colour tokens, the three brand fonts (Stack Sans Headline, Inter, Geist) and the type scale. No drop shadows.
+- This build is a Figma Make export with a behaviour layer (`src/LandingPage.tsx`) that finds elements by text and class fragments. Don't rename labels, classes or tags in `src/imports/FinalLandingPage/index.tsx`. To make something clickable, add a stretched `<a>` child (see design.md §12.2).
+- Fonts are self-hosted in `public/fonts/` and declared in `src/fonts.css`, including the Figma alias names. Don't reintroduce `static.figma.com` URLs.
+- Use Node 22.12 or newer (`.nvmrc`).

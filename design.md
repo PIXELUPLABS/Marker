@@ -483,11 +483,14 @@ A pill (`badge-height`, 30px): a small round tile holding `assets/icons/general/
 <h2 class="type-display-l">The usual paths <mark class="hl">don't ship</mark></h2>
 ```
 ```css
-.hl { background: var(--color-lime); color: var(--color-ink);
+h1, h2, h3, :has(> .hl) { isolation: isolate; }   /* required: see note below */
+.hl { position: relative; z-index: -1;
+      background: var(--color-lime); color: var(--color-ink);
       border: 1px solid var(--color-border-subtle); border-radius: var(--radius-xs);
       box-shadow: var(--shadow-highlighter); padding: 0 .12em;
       -webkit-box-decoration-break: clone; box-decoration-break: clone; }
 ```
+**Why `isolation` and `z-index: -1`:** with the tight display line-heights (1.05–1.15), Chromium clips the descenders of the line *above* a highlighted line ("g", "y", "p" lose their tails) as soon as the highlight has a background. Putting the highlight behind the text inside an isolated parent fixes this (the parent **must** be isolated, or the highlight disappears behind the section background), and matches Figma, where the highlight sits behind the type. Tested at 44–72px, with wrapped highlights, on light and black sections.
 
 ### 7.5 Buttons
 | Variant | Spec | States |
@@ -623,12 +626,12 @@ Before adding a component, check §7. If it truly doesn't exist, add it **here**
 Audited on 2026-11-05. It's responsive, uses semantic sections and headings, real links (booking at `info.onmarker.com/book-a-call`), Termly cookie consent and Google-hosted fonts. To do: alt text on all 29 images, highlighter spacing for screen readers, `theme-color` (`#FDFAF5` → `#1A1A1A`), 44px tap targets, JSON-LD `Organization`, and the Archivo migration. Full list in `AUDIT.md`.
 
 ### 12.2 Handoff build — `PIXELUPLABS/Marker` (Figma Make → GitHub Pages)
-Status 5 Nov 2026: the critical fixes below are on branch `fix/handoff-critical` and go live when it's merged to `master`. The page is still a fixed 1440px canvas (no mobile layout, AUDIT HO-4).
+Status 5 Nov 2026: the fixes below are in PR #1 (branch `fix/handoff-critical`), not yet merged. The `lfs: true` workflow change is prepared but waits on GitHub `workflow` permission. The page is still a fixed 1440px canvas (no mobile layout, AUDIT HO-4).
 
 - **Two layers.** `src/imports/FinalLandingPage/index.tsx` is the raw Figma Make export (4,435 lines, 410 absolutely positioned nodes, 0 responsive breakpoints). `src/LandingPage.tsx` attaches hover, tab and reveal behaviour by **matching text and class fragments**, so renaming a label, class or tag silently drops the behaviour. Re-check both files together and test in a browser.
 - **Adding a link to an export element.** Don't change the element's tag or classes. Add a stretched link as its last child: `<a href="…" aria-label="…" className="absolute inset-0 z-10 rounded-[inherit] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1a1a1a]" />`. The parent must be `relative`. For plain text links, put the `<a>` *inside* the `<p>` so the `<p>`'s text stays the same. This is how the CTAs, link cards and footer links work now. Section anchors (`#the-problem`, `#the-solution`, `#the-proof`, `#how-it-works`, `#who-we-are`) are `id`s on the section divs.
 - **Fonts (fixed).** Figma Make writes classes like `font-['Stack_Sans_Headline:Regular',sans-serif]`, so a family literally named `Stack Sans Headline:Regular` must exist. `src/fonts.css` (a copy of `assets/fonts/fonts.css`) declares these aliases over self-hosted woff2 in `public/fonts/`.
-- **Images (fixed).** `.gitattributes` stores PNGs, fonts and icons in Git LFS, so the deploy checkout uses `lfs: true`. Any new binary file you add also goes through LFS; make sure `git lfs` is installed before committing.
+- **Images (fix ready).** `.gitattributes` stores PNGs, fonts and icons in Git LFS, so the deploy checkout needs `lfs: true` (prepared; see the status line above). Any new binary file you add also goes through LFS; make sure `git lfs` is installed before committing.
 - **Node (fixed).** Vite 8 / Rolldown needs Node **≥ 22.12**: pinned in `package.json` `engines` and `.nvmrc`. On older Node, pnpm silently skips the native binding and the build fails.
 - **Deploy.** Pages source must stay on "GitHub Actions". `vite.config.ts` imports `.figma/make/site.json` (title, description, OG, favicon live there). The base path comes from `GITHUB_PAGES_BASE`. On Windows Git Bash, set `MSYS_NO_PATHCONV=1` or the `/Marker/` base gets rewritten into a Windows path.
 - **Recommendation:** treat this build as a visual reference only. Production scale-up should go into the Astro codebase using `tokens/` and the components above.
