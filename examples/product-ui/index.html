@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Product UI components — Marker</title>
+<link rel="icon" href="../../assets/favicon/favicon.svg">
+<style>
+  @font-face { font-family: 'Stack Sans Headline'; src: url('../../assets/fonts/stack-sans-headline-variable-latin.woff2') format('woff2'); font-weight: 200 700; font-display: swap; }
+  @font-face { font-family: 'Inter'; src: url('../../assets/fonts/inter-variable-latin.woff2') format('woff2'); font-weight: 100 900; font-display: swap; }
+  @font-face { font-family: 'Geist'; src: url('../../assets/fonts/geist-variable-latin.woff2') format('woff2'); font-weight: 100 900; font-display: swap; }
+  @font-face { font-family: 'Geist Mono'; src: url('../../assets/fonts/geist-mono-variable-latin.woff2') format('woff2'); font-weight: 100 900; font-display: swap; }
+</style>
+<link rel="stylesheet" href="../../tokens/tokens.css">
+<link rel="stylesheet" href="../../ui/marker-ui.css">
+<style>
+  /* Gallery layout only. Components come from ui/marker-ui.css. */
+  body { margin: 0; }
+  .g-head { position: sticky; top: 0; z-index: 20; display: flex; align-items: center; gap: var(--space-3); padding: 12px var(--ui-size-gutter); background: var(--ui-bg-canvas); border-bottom: 1px solid var(--ui-border-default); }
+  .g-head img { height: 22px; }
+  .g-wrap { max-width: 1200px; margin: 0 auto; padding: var(--space-8) var(--ui-size-gutter) var(--space-16); display: grid; gap: var(--space-8); }
+  .g-sec { display: grid; gap: var(--space-4); }
+  .g-sec > h2 { margin: 0; }
+  .g-sec > p { margin: -8px 0 0; color: var(--ui-fg-secondary); max-width: 70ch; }
+  .g-demo { display: flex; flex-wrap: wrap; gap: var(--space-3); align-items: center; }
+  .g-swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: var(--space-2); }
+  .g-sw { border: 1px solid var(--ui-border-default); border-radius: var(--radius-sm); overflow: hidden; background: var(--ui-bg-surface); }
+  .g-sw div { height: 44px; }
+  .g-sw code { display: block; padding: 6px 8px; font: 500 11px/1.3 var(--font-family-mono); color: var(--ui-fg-secondary); }
+  .g-type > div { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 10px 0; border-bottom: 1px solid var(--ui-border-default); flex-wrap: wrap; }
+  .g-type code { font: 400 12px var(--font-family-mono); color: var(--ui-fg-tertiary); }
+  .g-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-4); align-items: start; }
+  .g-chartbar { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; height: 36px; border-radius: 6px; overflow: hidden; }
+  .g-tip-demo { position: relative; display: inline-block; }
+  .g-tip-demo .mk-tooltip { position: static; display: inline-block; }
+</style>
+</head>
+<body class="mk-app">
+<a class="mk-visually-hidden" href="#main">Skip to content</a>
+<header class="g-head">
+  <img src="../../assets/logo/svg/logo-full-black.svg" alt="Marker" class="g-logo">
+  <span class="mk-badge mk-badge--plain">Product UI · v1.2</span>
+  <span class="mk-topbar__spacer" style="flex:1"></span>
+  <div class="mk-segmented" role="group" aria-label="Theme">
+    <button type="button" data-theme-set="light" aria-pressed="true">Light</button>
+    <button type="button" data-theme-set="dark" aria-pressed="false">Dark</button>
+    <button type="button" data-theme-set="system" aria-pressed="false">System</button>
+  </div>
+</header>
+
+<main id="main" class="g-wrap">
+  <div>
+    <p class="type-ui-label mk-subtle" style="margin:0 0 8px">Marker design system</p>
+    <h1 class="type-ui-display" style="margin:0">Product UI components</h1>
+    <p class="mk-muted" style="max-width:68ch">Every component in <code class="mk-mono">ui/marker-ui.css</code>, built only on theme tokens. Switch the theme above: nothing on this page hard-codes a colour. Spec: <code class="mk-mono">PRODUCT.md</code>.</p>
+  </div>
+
+  <section class="g-sec" aria-labelledby="s-colour">
+    <h2 id="s-colour" class="type-ui-heading">Theme colours</h2>
+    <p>Live values of the <code class="mk-mono">--ui-*</code> tokens for the current theme.</p>
+    <div class="g-swatches" id="swatches"></div>
+  </section>
+
+  <section class="g-sec" aria-labelledby="s-type">
+    <h2 id="s-type" class="type-ui-heading">Type scale</h2>
+    <div class="g-type">
+      <div><span class="type-ui-display">1,284 hours</span><code>ui-display · 40</code></div>
+      <div><span class="type-ui-title">Agents overview</span><code>ui-title · 28</code></div>
+      <div><span class="type-ui-kpi">80%</span><code>ui-kpi · 32</code></div>
+      <div><span class="type-ui-heading">Recent runs</span><code>ui-heading · 20</code></div>
+      <div><span class="type-ui-subheading">Data sources</span><code>ui-subheading · 16</code></div>
+      <div><span class="type-ui-body">The Lease compliance agent checked 48 leases this morning.</span><code>ui-body · 14</code></div>
+      <div><span class="type-ui-body-strong">Lease compliance agent</span><code>ui-body-strong · 14</code></div>
+      <div><span class="type-ui-small">Last run 4 min ago by Richard</span><code>ui-small · 13</code></div>
+      <div><span class="type-ui-caption">Updated 5 Nov, 14:32</span><code>ui-caption · 12</code></div>
+      <div><span class="type-ui-label">Status</span><code>ui-label · 11</code></div>
+      <div><span class="type-ui-mono">run_7f3a92c · 2m 14s</span><code>ui-mono · 13</code></div>
+    </div>
+  </section>
+
+  <section class="g-sec" aria-labelledby="s-sig">
+    <h2 id="s-sig" class="type-ui-heading">Marker signature pieces</h2>
+    <p>The parts that make the app feel like Marker rather than a generic dashboard: the eyebrow badge, a summary sentence with the number that matters, ruled stats, the pressed panel and the connector-line timeline.</p>
+    <nav aria-label="Breadcrumb"><ol class="mk-breadcrumb"><li><a href="#s-sig">Agents</a></li><li><a href="#s-sig">Lease compliance agent</a></li><li aria-current="page">Run run_7f3a92c</li></ol></nav>
+    <span class="mk-eyebrow">Prop-tech workspace · November 2026</span>
+    <div class="mk-summary">
+      <p class="mk-summary__lead"><mark>412 hours</mark> of manual work handed back this month. <span class="mk-muted">About two and a half people's time.</span></p>
+      <div class="mk-stats">
+        <div class="mk-stat"><span class="mk-stat__value">80%</span><span class="mk-stat__label">of product-ops manual work automated</span><span class="mk-stat__note mk-stat__note--good">Up 6 pts on October</span></div>
+        <div class="mk-stat"><span class="mk-stat__value">97.4%</span><span class="mk-stat__label">of runs succeeded</span><span class="mk-stat__note mk-stat__note--bad">Down 0.8 pts on October</span></div>
+        <div class="mk-stat"><span class="mk-stat__value">38</span><span class="mk-stat__label">runs today</span><span class="mk-stat__note">2 running now</span></div>
+        <div class="mk-stat"><span class="mk-stat__value">6</span><span class="mk-stat__label">active agents</span><span class="mk-stat__note">1 paused for review</span></div>
+      </div>
+    </div>
+    <div class="g-cols">
+      <div class="mk-panel--pressed" style="padding:var(--space-4)"><p class="type-ui-subheading" style="margin:0 0 6px">Needs a person</p><p class="mk-muted" style="margin:0">Use the pressed panel for one list that needs attention. Never for every block.</p></div>
+      <ol class="mk-timeline">
+        <li class="mk-timeline__item"><span class="mk-timeline__time">14:32</span><div class="mk-timeline__body"><p class="mk-timeline__title">Checked 48 leases</p><p class="mk-timeline__meta">1.8 h handed back</p></div></li>
+        <li class="mk-timeline__item mk-timeline__item--muted"><span class="mk-timeline__time">14:05</span><div class="mk-timeline__body"><p class="mk-timeline__title">Lost the Salesforce connection</p><p class="mk-timeline__meta">Retrying at 15:00</p></div></li>
+      </ol>
+      <div class="mk-card mk-card--danger"><div class="mk-card__header"><h3 class="mk-card__title type-ui-subheading">Danger zone</h3></div><div class="mk-card__body mk-stack"><p class="mk-muted" style="margin:0">Deleting this agent removes its run history.</p><div><button class="mk-btn mk-btn--danger" type="button" id="danger-btn"><span data-icon="trash-2"></span>Delete agent</button></div></div></div>
+    </div>
+  </section>
+
+  <section class="g-sec" aria-labelledby="s-btn">
+    <h2 id="s-btn" class="type-ui-heading">Buttons</h2>
+    <p>Primary is ink. Accent (Persimmon) is limited to one per screen. Danger is for destructive actions only.</p>
+    <div class="g-demo">
+      <button class="mk-btn mk-btn--primary" type="button"><span data-icon="plus"></span>New agent</button>
+      <button class="mk-btn mk-btn--secondary" type="button"><span data-icon="download"></span>Export CSV</button>
+      <button class="mk-btn mk-btn--ghost" type="button">Cancel</button>
+      <button class="mk-btn mk-btn--accent" type="button"><span data-icon="play"></span>Run agent</button>
+      <button class="mk-btn mk-btn--danger" type="button"><span data-icon="trash-2"></span>Delete agent</button>
+      <button class="mk-btn mk-btn--secondary mk-btn--icon" type="button" aria-label="More actions"><span data-icon="ellipsis"></span></button>
+    </div>
+    <div class="g-demo">
+      <button class="mk-btn mk-btn--primary mk-btn--sm" type="button">Small</button>
+      <button class="mk-btn mk-btn--primary" type="button">Default</button>
+      <button class="mk-btn mk-btn--primary mk-btn--lg" type="button">Large</button>
+      <button class="mk-btn mk-btn--primary" type="button" disabled>Disabled</button>
+      <button class="mk-btn mk-btn--secondary" type="button" aria-busy="true"><span class="mk-spinner" aria-hidden="true"></span>Running…</button>
+    </div>
+  </section>
+
+  <section class="g-sec" aria-labelledby="s-form">
+    <h2 id="s-form" class="type-ui-heading">Forms</h2>
+    <div class="g-cols">
+      <div class="mk-field">
+        <label class="mk-label" for="f-name">Agent name</label>
+        <input class="mk-input" id="f-name" value="Lease compliance agent">
+        <p class="mk-help">Shown in run logs and notifications.</p>
+      </div>
+      <div class="mk-field">
+        <label class="mk-label" for="f-src">Data source</label>
+        <select class="mk-select" id="f-src"><option>Salesforce</option><option>NetSuite</option><option>Google Sheets</option></select>
+      </div>
+      <div class="mk-field">
+        <label class="mk-label" for="f-thr">Escalation threshold <span class="mk-label__optional">(USD)</span></label>
+        <input class="mk-input" id="f-thr" value="abc" aria-invalid="true" aria-describedby="f-thr-err">
+        <p class="mk-error" id="f-thr-err"><span data-icon="circle-alert"></span>Enter a number, for example 1000.</p>
+      </div>
+      <div class="mk-field">
+        <label class="mk-label" for="f-notes">Instructions</label>
+        <textarea class="mk-textarea" id="f-notes">Flag any lease where the renewal date is within 60 days.</textarea>
+      </div>
+      <div class="mk-field">
+        <label class="mk-label" for="f-dis">Owner</label>
+        <input class="mk-input" id="f-dis" value="David" disabled>
+      </div>
+      <div class="mk-field">
+        <span class="mk-label" id="f-search-l">Search</span>
+        <div class="mk-search" role="search">
+          <span data-icon="search"></span>
+          <input class="mk-input" aria-labelledby="f-search-l" placeholder="Search agents and runs">
+          <kbd class="mk-kbd">/</kbd>
+        </div>
+        <p class="mk-help">Result: <mark class="mk-highlight">Lease</mark> compliance agent</p>
+      </div>
+    </div>
+    <div class="g-demo">
+      <label class="mk-check"><input type="checkbox" checked> Notify me on failures</label>
+      <label class="mk-check"><input type="checkbox"> Weekly summary</label>
+      <label class="mk-check"><input type="checkbox" id="indet"> Select all</label>
+      <label class="mk-check"><input type="radio" name="r" checked> Every hour</label>
+      <label class="mk-check"><input type="radio" name="r"> Daily</label>
+      <label class="mk-switch"><input type="checkbox" role="switch" checked> Agent active</label>
+      <label class="mk-switch"><input type="checkbox" role="switch"> Dry run</label>
+    </div>
+  </section>
+
+  <section class="g-sec" aria-labelledby="s-nav">
+    <h2 id="s-nav" class="type-ui-heading">Navigation</h2>
+    <div class="g-cols">
+      <nav class="mk-card" style="padding:8px" aria-label="Example sidebar">
+        <div class="mk-nav">
+          <a class="mk-nav__item" href="#s-nav" aria-current="page"><span data-icon="layout-dashboard" data-size="20"></span><span>Overview</span></a>
+          <a class="mk-nav__item" href="#s-nav"><span data-icon="bot" data-size="20"></span><span>Agents</span><span class="mk-badge mk-badge--plain">6</span></a>
+          <a class="mk-nav__item" href="#s-nav"><span data-icon="history" data-size="20"></span><span>Runs</span></a>
+          <a class="mk-nav__item" href="#s-nav"><span data-icon="lightbulb" data-size="20"></span><span>Opportunities</span></a>
+        </div>
+      </nav>
+      <div class="mk-stack">
+        <div class="mk-tabs" role="tablist" aria-label="Agent sections">
+          <button class="mk-tab" role="tab" aria-selected="true">Overview</button>
+          <button class="mk-tab" role="tab" aria-selected="false">Runs</button>
+          <button class="mk-tab" role="tab" aria-selected="false">Configuration</button>
+          <button class="mk-tab" role="tab" aria-selected="false">Access</button>
+        </div>
+        <div class="mk-segmented" role="group" aria-label="Range">
+          <button type="button" aria-pressed="false">7d</button><button type="button" aria-pressed="true">30d</button><button type="button" aria-pressed="false">90d</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="g-sec" aria-labelledby="s-status">
+    <h2 id="s-status" class="type-ui-heading">Status, tags and avatars</h2>
+    <p>Status is always a dot or icon plus a word. Red only means failed or destructive.</p>
+    <div class="g-demo">
+      <span class="mk-badge mk-badge--success">Succeeded</span>
+      <span class="mk-badge mk-badge--info mk-badge--running">Running</span>
+      <span class="mk-badge mk-badge--warning">Needs review</span>
+      <span class="mk-badge mk-badge--danger">Failed</span>
+      <span class="mk-badge">Paused</span>
+      <span class="mk-badge mk-badge--plain">Draft</span>
+      <span class="mk-tag">Finance <button type="button" aria-label="Remove Finance"><span data-icon="x" data-size="12"></span></button></span>
+      <span class="mk-tag">Operations</span>
+      <span class="mk-avatar" aria-label="Will">W</span><span class="mk-avatar" aria-label="Richard">R</span><span class="mk-avatar mk-avatar--lg" aria-label="David">D</span>
+    </div>
+  </section>
+
+  <section class="g-sec" aria-labelledby="s-alert">
+    <h2 id="s-alert" class="type-ui-heading">Alerts and feedback</h2>
+    <div class="mk-stack">
+      <div class="mk-alert mk-alert--info" role="status"><span data-icon="info"></span><div><p class="mk-alert__title">New data source connected</p><p class="mk-alert__body">NetSuite is syncing. The first run starts when the sync finishes.</p></div></div>
+      <div class="mk-alert mk-alert--success" role="status"><span data-icon="circle-check"></span><div><p class="mk-alert__title">Agent resumed</p><p class="mk-alert__body">The Onboarding agent will run again at 15:00.</p></div></div>
+      <div class="mk-alert mk-alert--warning" role="status"><span data-icon="triangle-alert"></span><div><p class="mk-alert__title">3 runs need review</p><p class="mk-alert__body">Invoice totals don't match the purchase order.</p></div><button class="mk-btn mk-btn--ghost mk-btn--sm" type="button">Review</button></div>
+      <div class="mk-alert mk-alert--danger" role="alert"><span data-icon="circle-x"></span><div><p class="mk-alert__title">Couldn't reach Salesforce</p><p class="mk-alert__body">Check the connection in Settings → Data sources.</p></div><button class="mk-btn mk-btn--ghost mk-btn--sm" type="button">Retry</button></div>
+    </div>
+    <div class="g-cols">
+      <div class="mk-stack"><span class="type-ui-small mk-muted">Rollout progress · 64%</span><div class="mk-progress" role="progressbar" aria-valuenow="64" aria-valuemin="0" aria-valuemax="100" aria-label="Rollout progress"><div class="mk-progress__bar" style="--value:64%"></div></div></div>
+      <div class="mk-stack" aria-busy="true" aria-label="Loading"><div class="mk-skeleton" style="height:14px;width:60%"></div><div class="mk-skeleton" style="height:14px;width:90%"></div><div class="mk-skeleton" style="height:14px;width:75%"></div></div>
+      <div class="g-demo"><button class="mk-btn mk-btn--secondary" type="button" id="toast-btn">Show toast</button><button class="mk-btn mk-btn--secondary" type="button" id="dialog-btn">Open dialog</button></div>
+    </div>
+  </section>
+
+  <section class="g-sec" aria-labelledby="s-data">
+    <h2 id="s-data" class="type-ui-heading">Cards, KPIs and tables</h2>
+    <div class="mk-grid mk-grid--kpi">
+      <div class="mk-card mk-kpi"><span class="mk-kpi__label">Hours saved this month</span><span class="mk-kpi__value">412</span><span class="mk-kpi__delta mk-kpi__delta--good"><span data-icon="trending-up"></span>+18% vs October</span></div>
+      <div class="mk-card mk-kpi"><span class="mk-kpi__label">Runs succeeded</span><span class="mk-kpi__value">97.4%</span><span class="mk-kpi__delta mk-kpi__delta--bad"><span data-icon="trending-down"></span>−0.8 pts vs October</span></div>
+      <div class="mk-card mk-kpi"><span class="mk-kpi__label">Active agents</span><span class="mk-kpi__value">6</span><span class="mk-kpi__delta">No change</span></div>
+    </div>
+    <div class="mk-table-wrap">
+      <table class="mk-table" aria-label="Example runs">
+        <thead><tr><th scope="col">Agent</th><th scope="col">Status</th><th scope="col">Run</th><th scope="col" class="mk-num" aria-sort="descending"><button type="button">Duration <span data-icon="chevron-down" data-size="12"></span></button></th><th scope="col"><span class="mk-visually-hidden">Actions</span></th></tr></thead>
+        <tbody>
+          <tr><td><span class="mk-table__primary">Lease compliance agent</span><span class="mk-table__secondary">Prop-tech · Finance</span></td><td><span class="mk-badge mk-badge--success">Succeeded</span></td><td class="mk-mono">run_7f3a92c</td><td class="mk-num">2m 14s</td><td><button class="mk-btn mk-btn--ghost mk-btn--icon mk-btn--sm" type="button" aria-label="Actions for run_7f3a92c"><span data-icon="ellipsis"></span></button></td></tr>
+          <tr aria-selected="true"><td><span class="mk-table__primary">Onboarding agent</span><span class="mk-table__secondary">Prop-tech · Operations</span></td><td><span class="mk-badge mk-badge--warning">Needs review</span></td><td class="mk-mono">run_7f3a8e1</td><td class="mk-num">5m 02s</td><td><button class="mk-btn mk-btn--ghost mk-btn--icon mk-btn--sm" type="button" aria-label="Actions for run_7f3a8e1"><span data-icon="ellipsis"></span></button></td></tr>
+          <tr><td><span class="mk-table__primary">Product ops agent</span><span class="mk-table__secondary">Retail · Product operations</span></td><td><span class="mk-badge mk-badge--danger">Failed</span></td><td class="mk-mono">run_7f3a7b0</td><td class="mk-num">0m 41s</td><td><button class="mk-btn mk-btn--ghost mk-btn--icon mk-btn--sm" type="button" aria-label="Actions for run_7f3a7b0"><span data-icon="ellipsis"></span></button></td></tr>
+        </tbody>
+      </table>
+      <div class="mk-pagination"><span>1–3 of 214 runs</span><div class="mk-row"><button class="mk-btn mk-btn--secondary mk-btn--sm" type="button" disabled>Previous</button><button class="mk-btn mk-btn--secondary mk-btn--sm" type="button">Next</button></div></div>
+    </div>
+  </section>
+
+  <section class="g-sec" aria-labelledby="s-overlay">
+    <h2 id="s-overlay" class="type-ui-heading">Menus, tooltips and empty states</h2>
+    <div class="g-cols">
+      <div class="mk-menu" role="menu" aria-label="Run actions">
+        <button class="mk-menu__item" role="menuitem" type="button"><span data-icon="eye"></span>View run</button>
+        <button class="mk-menu__item" role="menuitem" type="button"><span data-icon="refresh-cw"></span>Re-run</button>
+        <button class="mk-menu__item" role="menuitem" type="button"><span data-icon="copy"></span>Copy run ID</button>
+        <div class="mk-menu__sep" role="separator"></div>
+        <button class="mk-menu__item mk-menu__item--danger" role="menuitem" type="button"><span data-icon="trash-2"></span>Delete run</button>
+      </div>
+      <div class="mk-stack"><div class="g-tip-demo"><span class="mk-tooltip" role="tooltip">Hours saved = manual minutes × runs ÷ 60</span></div></div>
+      <div class="mk-card mk-empty">
+        <div class="mk-empty__icon"><img src="../../assets/icons/dot/rocket.svg" alt="" width="30" height="30" style="filter:var(--g-icon-filter, none)"></div>
+        <h3 class="mk-empty__title type-ui-subheading">No agents yet</h3>
+        <p class="mk-empty__body">Start with the process that eats the most hours.</p>
+        <button class="mk-btn mk-btn--primary" type="button"><span data-icon="plus"></span>Create agent</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="g-sec" aria-labelledby="s-chart">
+    <h2 id="s-chart" class="type-ui-heading">Chart colours</h2>
+    <p>Categorical slots 1–6 in fixed order (never cycled), then "other"; sequential Persimmon; diverging Sky ↔ Persimmon. Each theme has its own validated steps.</p>
+    <ul class="mk-legend" aria-label="Categorical slots">
+      <li class="mk-series-1">1 Persimmon</li><li class="mk-series-2">2 Sky</li><li class="mk-series-3">3 Beige</li><li class="mk-series-4">4 Green</li><li class="mk-series-5">5 Pink</li><li class="mk-series-6">6 Lime</li><li class="mk-series-other">Other</li>
+    </ul>
+    <div class="g-chartbar" aria-label="Sequential ramp" role="img"><span style="background:var(--ui-chart-seq-1)"></span><span style="background:var(--ui-chart-seq-2)"></span><span style="background:var(--ui-chart-seq-3)"></span><span style="background:var(--ui-chart-seq-4)"></span><span style="background:var(--ui-chart-seq-5)"></span><span style="background:var(--ui-chart-seq-6)"></span><span style="background:var(--ui-chart-seq-7)"></span></div>
+    <div class="g-chartbar" aria-label="Diverging ramp" role="img"><span style="background:var(--ui-chart-div-1)"></span><span style="background:var(--ui-chart-div-2)"></span><span style="background:var(--ui-chart-div-3)"></span><span style="background:var(--ui-chart-div-4)"></span><span style="background:var(--ui-chart-div-5)"></span><span style="background:var(--ui-chart-div-6)"></span><span style="background:var(--ui-chart-div-7)"></span></div>
+  </section>
+</main>
+
+<dialog class="mk-dialog" id="dlg" aria-labelledby="dlg-t">
+  <div class="mk-dialog__header"><h2 id="dlg-t" class="mk-dialog__title type-ui-heading">Delete Lease compliance agent?</h2><button class="mk-btn mk-btn--ghost mk-btn--icon" type="button" aria-label="Close" data-close><span data-icon="x"></span></button></div>
+  <div class="mk-dialog__body"><p style="margin:0">Its 214 runs and their logs will be removed. This can't be undone.</p></div>
+  <div class="mk-dialog__footer"><button class="mk-btn mk-btn--secondary" type="button" data-close>Cancel</button><button class="mk-btn mk-btn--danger" type="button" data-close>Delete agent</button></div>
+</dialog>
+<div class="mk-toast-region" aria-live="polite" id="toasts"></div>
+
+<script src="../../ui/icons.js"></script>
+<script>
+  (function () {
+    var root = document.documentElement;
+    function setTheme(t) {
+      root.setAttribute('data-theme', t);
+      document.querySelectorAll('[data-theme-set]').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.themeSet === t)); });
+      var dark = t === 'dark' || (t === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      document.querySelectorAll('.g-logo').forEach(function (img) { img.src = '../../assets/logo/svg/logo-full-' + (dark ? 'white' : 'black') + '.svg'; });
+      root.style.setProperty('--g-icon-filter', dark ? 'invert(1)' : 'none');
+      try { localStorage.setItem('mk-theme', t); } catch (e) {}
+      renderSwatches();
+    }
+    function renderSwatches() {
+      var names = ['bg-canvas','bg-surface','bg-sunken','bg-selected','bg-inverse','fg-primary','fg-secondary','fg-tertiary','fg-link','border-default','border-strong','action-primary','action-accent','action-danger','accent-highlight','accent-progress','status-success-solid','status-warning-solid','status-danger-solid','status-info-solid'];
+      var cs = getComputedStyle(document.body), el = document.getElementById('swatches');
+      el.innerHTML = names.map(function (n) {
+        return '<div class="g-sw"><div style="background:var(--ui-' + n + ')"></div><code>' + n + '<br>' + cs.getPropertyValue('--ui-' + n).trim() + '</code></div>';
+      }).join('');
+      // resolve var() references to hex for display
+      el.querySelectorAll('.g-sw').forEach(function (sw) {
+        var c = getComputedStyle(sw.firstChild).backgroundColor, m = c.match(/\d+/g);
+        if (m) { var hex = '#' + m.slice(0, 3).map(function (x) { return (+x).toString(16).padStart(2, '0'); }).join('').toUpperCase(); sw.querySelector('code').innerHTML = sw.querySelector('code').innerHTML.split('<br>')[0] + '<br>' + hex; }
+      });
+    }
+    document.querySelectorAll('[data-theme-set]').forEach(function (b) { b.addEventListener('click', function () { setTheme(b.dataset.themeSet); }); });
+    var saved = 'light'; try { saved = localStorage.getItem('mk-theme') || 'light'; } catch (e) {}
+    var q = new URLSearchParams(location.search).get('theme'); if (q === 'light' || q === 'dark' || q === 'system') saved = q;
+    setTheme(saved);
+    document.getElementById('indet').indeterminate = true;
+    document.querySelectorAll('[role="tablist"]').forEach(function (list) {
+      var tabs = list.querySelectorAll('[role="tab"]');
+      tabs.forEach(function (t, i) {
+        t.tabIndex = t.getAttribute('aria-selected') === 'true' ? 0 : -1;
+        t.addEventListener('click', function () { tabs.forEach(function (x) { x.setAttribute('aria-selected', 'false'); x.tabIndex = -1; }); t.setAttribute('aria-selected', 'true'); t.tabIndex = 0; });
+        t.addEventListener('keydown', function (e) { var d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0; if (!d) return; var n = tabs[(i + d + tabs.length) % tabs.length]; n.focus(); n.click(); });
+      });
+    });
+    document.querySelectorAll('.mk-segmented:not([aria-label="Theme"])').forEach(function (g) {
+      g.querySelectorAll('button').forEach(function (b) { b.addEventListener('click', function () { g.querySelectorAll('button').forEach(function (x) { x.setAttribute('aria-pressed', 'false'); }); b.setAttribute('aria-pressed', 'true'); }); });
+    });
+    var dlg = document.getElementById('dlg');
+    document.getElementById('dialog-btn').addEventListener('click', function () { dlg.showModal(); dlg.querySelector('[data-close]:not(.mk-btn--danger):not(.mk-btn--icon)').focus(); });
+    document.getElementById('danger-btn').addEventListener('click', function () { dlg.showModal(); dlg.querySelector('[data-close]:not(.mk-btn--danger):not(.mk-btn--icon)').focus(); });
+    dlg.querySelectorAll('[data-close]').forEach(function (b) { b.addEventListener('click', function () { dlg.close(); }); });
+    document.getElementById('toast-btn').addEventListener('click', function () {
+      var t = document.createElement('div'); t.className = 'mk-toast';
+      t.innerHTML = '<span data-icon="circle-check"></span><p>Agent paused. It won’t run until you resume it.</p><button class="mk-btn mk-btn--ghost mk-btn--sm" type="button">Undo</button>';
+      document.getElementById('toasts').appendChild(t); window.MarkerIcons.render(t);
+      setTimeout(function () { t.remove(); }, 5000);
+    });
+  })();
+</script>
+</body>
+</html>

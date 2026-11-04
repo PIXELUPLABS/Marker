@@ -1,7 +1,7 @@
 ---
 name: Marker
 document: Brand guidelines (text edition)
-version: 1.1.0
+version: 1.2.0
 updated: 2026-11-05
 basedOn: Brand Guidelines v1.0 (Aug 2026, Figma) + Brand & Website brief (David Pastewka, Jul 2026)
 companion: DESIGN.md (visual system and components), tokens/tokens.json (values)
@@ -9,9 +9,9 @@ companion: DESIGN.md (visual system and components), tokens/tokens.json (values)
 
 # Marker — Brand Guidelines
 
-> **Repo copy.** Mirrors `Marker-Scale-Kit/BRAND.md` v1.1.0 (5 Nov 2026). `tokens/` is included in this repo; paths under `assets/`, `brand-guidelines/`, `evidence/` and `tools/` refer to the Scale Kit. Edit the kit, then re-copy. Don't edit this file directly.
+> **Repo copy.** Mirrors `Marker-Scale-Kit/BRAND.md` v1.2.0 (5 Nov 2026). This repo includes `tokens/`, `ui/`, the product examples in `examples/`, and the fonts, logos and product icons they use (in `assets/`). Other paths (the rest of `assets/`, `brand-guidelines/`, `evidence/`, `tools/`, `AUDIT.md`) refer to the Scale Kit. The kit's `DESIGN.md` is `design.md` here. Edit the kit, then re-copy. Don't edit this file directly.
 
-> This is the text edition of the Figma brand deck (exported page by page in [`brand-guidelines/pages/`](brand-guidelines/pages/)), plus what the deck doesn't cover yet: positioning, voice, messaging and asset rules. Visual and UI rules live in [`DESIGN.md`](DESIGN.md). Both files are written so a person or an AI agent (Claude Code) can produce on-brand work from them.
+> This is the text edition of the Figma brand deck (exported page by page in [`brand-guidelines/pages/`](brand-guidelines/pages/)), plus what the deck doesn't cover yet: positioning, voice, messaging and asset rules. Visual and UI rules live in [`DESIGN.md`](design.md). Both files are written so a person or an AI agent (Claude Code) can produce on-brand work from them.
 
 ---
 
@@ -221,3 +221,24 @@ Use these exactly; don't round up or embellish. If a page needs a fact that isn'
 | OG image (production) | Use `assets/og/og-image-1200x630.png`, served from the site root |
 
 Pages that don't exist yet (About, Case studies, Insights) should link to their home-page anchors until they launch. Don't invent paths.
+
+---
+
+## 12. Voice in the product (UI copy)
+
+The product speaks like the website, but shorter: an expert colleague confirming what happened and what to do next. Calm when things break, specific when things work.
+
+| Element | Do | Don't |
+|---|---|---|
+| **Buttons** | Verb first, 1–3 words: "Run agent", "Export CSV", "Add data source" | "Submit", "OK", "Click here", "Yes" |
+| **Destructive confirm** | Name the thing and the consequence, with the real name and count from the data: "Delete Lease compliance agent? Its 214 runs will be removed." + "Delete agent" / "Cancel". (Name and count here are examples.) Focus starts on Cancel. | "Are you sure?" |
+| **Errors** | What happened + what to do: "Couldn't reach Salesforce. Check the connection in Settings → Data sources." | "Error 500", "Something went wrong", blaming the user |
+| **Empty states** | One sentence on value + one action: "No agents yet. Start with the process that eats the most hours." → "Create agent" | Jokes, illustrations of sad robots, several actions |
+| **Success** | Past tense, specific: "Agent paused. It won't run until you resume it." | "Success!", exclamation marks |
+| **Status words** | Agents: Active · Paused · Draft · Error. Runs: Running · Succeeded · Failed · Needs review | Mixing "Completed/Done/Finished" for the same state, or using run words for agents |
+| **Escalations** | Say why a human is needed: "Needs review: the invoice total doesn't match the PO (off by $1,240)." | "Exception occurred" |
+| **Numbers** | "214 runs", "12.5 hours saved", "80%". Thousands with commas; at most 1 decimal in KPIs | "12.4836 hrs", "80.00%" |
+| **Time** | Relative under 24h ("4 min ago"), then "5 Nov, 14:32"; durations "2m 14s" | Raw ISO timestamps in the UI (keep them in tooltips and logs) |
+| **AI wording** | Name the agent and the work: "The Lease compliance agent checked 48 leases." | "Our AI magically…", "the model thinks…" |
+
+Product words to use consistently: **agent** (a deployed automation), **run** (one execution), **opportunity** (a ranked candidate for automation), **escalation** (a case handed to a person), **data source** (a connected system).

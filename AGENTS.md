@@ -42,8 +42,11 @@ This project uses **Tailwind CSS v4** through the `@tailwindcss/vite` plugin con
 
 ## Marker design system (read before any UI or copy change)
 
-- Follow `design.md` (visual system, components, accessibility checklist) and `BRAND.md` (voice, logo, approved facts, URLs). Values live in `tokens/tokens.json`.
-- Use only the colour tokens, the three brand fonts (Stack Sans Headline, Inter, Geist) and the type scale. No drop shadows.
+- **Website:** follow `design.md` (visual system, components, accessibility checklist) and `BRAND.md` (voice, logo, approved facts, URLs). Values live in `tokens/tokens.json`.
+- **App UI (Marker Command Center):** follow `PRODUCT.md`. Components are in `ui/marker-ui.css` (`mk-` classes; light/dark via `data-theme` on `<html>`), icons in `ui/icons.js`. Working references: `examples/product-ui/` and `examples/command-center/` (plain HTML, open directly). These are not part of the website build.
+- Use only the colour tokens (website: brand colours; app: the `--ui-*` theme tokens), the three brand fonts (Stack Sans Headline, Inter, Geist; Geist Mono for IDs in the app only) and the type scale. No drop shadows.
+- Don't make it look AI-generated: no purple/blue gradients, glows, sparkle or robot icons, emoji as icons, rows of identical KPI cards or coloured rails on cards. Use Marker's own devices (ink frame, lime highlighter, eyebrow badge, pressed panel, connector timeline). Full lists: `design.md` §10 and `PRODUCT.md` §14.
 - This build is a Figma Make export with a behaviour layer (`src/LandingPage.tsx`) that finds elements by text and class fragments. Don't rename labels, classes or tags in `src/imports/FinalLandingPage/index.tsx`. To make something clickable, add a stretched `<a>` child (see design.md §12.2).
 - Fonts are self-hosted in `public/fonts/` and declared in `src/fonts.css`, including the Figma alias names. Don't reintroduce `static.figma.com` URLs.
+- The design docs, `tokens/`, `ui/`, `examples/` and `assets/` are copies from the Marker Scale Kit. Change them in the kit and re-copy, so the two don't drift.
 - Use Node 22.12 or newer (`.nvmrc`).

@@ -6,7 +6,7 @@ description: >
   sections, Stack Sans Headline set tight, one lime highlighter on the
   words that matter, and Persimmon for emphasis and data. Depth comes from
   inset "pressed" surfaces and dot textures, never from drop shadows.
-version: 1.1.0
+version: 1.2.0
 updated: 2026-11-05
 sources:
   figma: https://www.figma.com/design/AX5DIfecorSfNIi8MjEvtb/-Handoff--Marker
@@ -187,9 +187,9 @@ components:
 
 # Marker — Design System
 
-> **Repo copy.** Mirrors `Marker-Scale-Kit/DESIGN.md` v1.1.0 (5 Nov 2026). `tokens/` is included in this repo; paths under `assets/`, `brand-guidelines/`, `evidence/` and `tools/` refer to the Scale Kit. Edit the kit, then re-copy. Don't edit this file directly.
+> **Repo copy.** Mirrors `Marker-Scale-Kit/DESIGN.md` v1.2.0 (5 Nov 2026). This repo includes `tokens/`, `ui/`, the product examples in `examples/`, and the fonts, logos and product icons they use (in `assets/`). Other paths (the rest of `assets/`, `brand-guidelines/`, `evidence/`, `tools/`, `AUDIT.md`) refer to the Scale Kit. The kit's `DESIGN.md` is `design.md` here. Edit the kit, then re-copy. Don't edit this file directly.
 
-> **Read this first (humans and AI agents).** This file is the single source of truth for how Marker looks. It replaces the two older, contradictory docs (`Dev/Test/DESIGN.md` from the July exploration and `Dev/Final Version/Marker Test/design.md` from the August handoff build). Values live in [`tokens/tokens.json`](tokens/tokens.json); this file explains the rules. When the three disagree, the order of authority is **tokens.json → this file → Figma → any codebase**. Brand voice, logo rules and messaging live in [`BRAND.md`](BRAND.md).
+> **Read this first (humans and AI agents).** This file is the single source of truth for how Marker looks. It replaces the two older, contradictory docs (`Dev/Test/DESIGN.md` from the July exploration and `Dev/Final Version/Marker Test/design.md` from the August handoff build). Values live in [`tokens/tokens.json`](tokens/tokens.json); this file explains the rules. When the three disagree, the order of authority is **tokens.json → this file → Figma → any codebase**. Brand voice, logo rules and messaging live in [`BRAND.md`](BRAND.md). App UI (Command Center) is specified in [`PRODUCT.md`](PRODUCT.md), which builds on this file.
 
 **When building or editing UI with Claude Code (or any agent):**
 
@@ -594,6 +594,7 @@ Signature motions are the connector-line "data flow" in the hero, the morphing g
 - Use the logo files from `assets/logo/` and the button construction in §7.5.
 
 **Don't**
+- Don't make it look AI-generated. The usual tells: purple/blue gradient heroes, glassmorphism, glowing orbs, sparkle or robot icons for "AI", emoji section markers, three identical feature cards with icons, a coloured rail on rounded cards, everything centred, and the same radius and border on every block. Marker answers with its own devices: the ink frame, the lime highlighter on meaning, the eyebrow badge, inset pressed depth, connector lines with Persimmon nodes, and dot textures.
 - Don't add drop shadows, glows, glassmorphism, neon or purple/blue "AI" gradients.
 - Don't highlight more than one phrase per headline, or whole sentences.
 - Don't put white body text on Persimmon, or set Persimmon body text on white (both 3.37:1).
@@ -614,7 +615,7 @@ The client plans to add pages later (case studies, about, blog, careers). Build 
 | **About** | Hero → "Who we are" credential list → founder cards (photo direction pending; use logomark tiles until then) → timeline as How-it-works rows → CTA. |
 | **Blog / Insights index** | Light section, `display-l` title, card grid (`card`, `rounded.md`, `label` category, `heading` title, `body-sm` excerpt): 1 column below `md`, 2 from `md`, 3 from `lg`. |
 | **Article** | 680px measure, `display-m` title, `body-lg` intro, `body` paragraphs, `heading` subheads, persimmon pull-quote rule, CTA band at the end. |
-| **Product (Marker Command Center)** | Reuse tokens. For app UI use `surface` / `surface-page` / `border` with `ink` text; persimmon for primary actions inside the app; supporting colours as the data-viz series order: persimmon, green, sky, beige, pink, lime. |
+| **Product (Marker Command Center)** | **Use [`PRODUCT.md`](PRODUCT.md)**: the product layer, with light/dark theme tokens, a dense type scale, app components (`ui/marker-ui.css`), validated chart colours and product voice. Primary actions in the app are ink; Persimmon is the accent. |
 
 Before adding a component, check §7. If it truly doesn't exist, add it **here** first (tokens, states, responsive behaviour), then build it.
 
