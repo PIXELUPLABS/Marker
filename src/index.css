@@ -1,4 +1,6 @@
 @import 'tailwindcss';
+/* Self-hosted brand fonts + Figma Make alias families. See design.md §12.2. */
+@import './fonts.css';
 
 html,
 body,
@@ -6,71 +8,6 @@ body,
   height: 100%;
   min-height: 100vh;
 }
-
-/* Archivo — variable font (wdth, wght) */
-@font-face {
-  font-family: 'Archivo';
-  font-style: normal;
-  font-weight: 400;
-  src: url('https://static.figma.com/font/Archivo_wdth_wght__1') format('woff2');
-}
-@font-face {
-  font-family: 'Archivo';
-  font-style: normal;
-  font-weight: 500;
-  src: url('https://static.figma.com/font/Archivo_wdth_wght__1') format('woff2');
-}
-@font-face {
-  font-family: 'Archivo';
-  font-style: normal;
-  font-weight: 600;
-  src: url('https://static.figma.com/font/Archivo_wdth_wght__1') format('woff2');
-}
-
-/* Inter */
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 400;
-  src: url('https://static.figma.com/font/Inter_1') format('woff2');
-}
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 500;
-  src: url('https://static.figma.com/font/Inter_1') format('woff2');
-}
-
-/* Inter Display — blocked; falls back to Inter */
-@font-face {
-  font-family: 'Inter Display';
-  font-style: normal;
-  font-weight: 400;
-  src: url('https://static.figma.com/font/Inter_1') format('woff2');
-}
-
-/* Stack Sans Headline — variable font (wght) */
-@font-face {
-  font-family: 'Stack Sans Headline';
-  font-style: normal;
-  font-weight: 300;
-  src: url('https://static.figma.com/font/StackSansHeadline_wght__1') format('woff2');
-}
-@font-face {
-  font-family: 'Stack Sans Headline';
-  font-style: normal;
-  font-weight: 400;
-  src: url('https://static.figma.com/font/StackSansHeadline_wght__1') format('woff2');
-}
-
-/* Geist */
-@font-face {
-  font-family: 'Geist';
-  font-style: normal;
-  font-weight: 500;
-  src: url('https://static.figma.com/font/Geist_wght__1') format('woff2');
-}
-
 
 @theme {
   --font-archivo: 'Archivo', sans-serif;
